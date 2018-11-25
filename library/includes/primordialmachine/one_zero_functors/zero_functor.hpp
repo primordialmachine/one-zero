@@ -31,6 +31,17 @@ template<typename TYPE>
 struct zero_functor;
 
 template<>
+struct zero_functor<signed char>
+{
+  static constexpr signed char value = 0;
+}; // struct zero_functor
+template<>
+struct zero_functor<unsigned char>
+{
+  static constexpr unsigned char value = 0;
+}; // struct zero_functor
+
+template<>
 struct zero_functor<signed short int>
 {
   static constexpr signed short int value = 0;
