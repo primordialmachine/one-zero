@@ -138,6 +138,9 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Outputs>
       <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Inputs>
     </CustomBuildStep>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -196,6 +199,9 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Inputs>
       <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Outputs>
     </CustomBuildStep>
+    <Lib>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
