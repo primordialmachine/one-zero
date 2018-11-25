@@ -14,7 +14,7 @@
 
 \SetOrganization{Primordial Machine's}
 \SetLibraryName{One Zero Functors Library}
-\SetLibraryVersion{v1.0}
+\SetLibraryVersion{v1.1}
 \SetLibraryRepository{https://github.com/primordialmachine/one-zero-functors}
 \SetAuthor{Michael Heilmann}
 \SetEmail{michaelheilmann@primordialmachine.com}
@@ -89,6 +89,8 @@ struct zero_functor;
 \end{verbatim}
 Provides a member constant value \texttt{value} of type \texttt{TYPE} approximating the value
 $0$ (zero). Specializations for the types
+\texttt{signed char},
+\texttt{unsigned char},
 \texttt{signed short int}       (aka \texttt{short int},     aka \texttt{signed short},     aka \texttt{short}),
 \texttt{signed long int}        (aka \texttt{long int},      aka \texttt{signed long},      aka \texttt{long}),
 \texttt{signed long long int}   (aka \texttt{long long int}, aka \texttt{signed long long}, aka \texttt{long long}),
@@ -107,6 +109,8 @@ struct one_functor;
 \end{verbatim}
 Provides a member constant value \texttt{value} of type \texttt{TYPE} approximating the value
 $1$ (one). Specializations for the types
+\texttt{signed char},
+\texttt{unsigned char},
 \texttt{signed short int}       (aka \texttt{short int},     aka \texttt{signed short},     aka \texttt{short}),
 \texttt{signed long int}        (aka \texttt{long int},      aka \texttt{signed long},      aka \texttt{long}),
 \texttt{signed long long int}   (aka \texttt{long long int}, aka \texttt{signed long long}, aka \texttt{long long}),
