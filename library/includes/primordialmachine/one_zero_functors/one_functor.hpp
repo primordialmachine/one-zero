@@ -31,6 +31,12 @@ template<typename TYPE>
 struct one_functor;
 
 template<>
+struct one_functor<char>
+{
+  static constexpr char value = 1;
+}; // struct one_functor
+
+template<>
 struct one_functor<signed char>
 {
   static constexpr signed char value = 1;

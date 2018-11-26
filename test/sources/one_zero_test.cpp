@@ -4,6 +4,7 @@
 TEST(one_test, one_test)
 {
   using namespace primordialmachine;
+  ASSERT_EQ(1, one_functor<char>::value);
   ASSERT_EQ(1, one_functor<signed char>::value);
   ASSERT_EQ(1, one_functor<unsigned char>::value);
   ASSERT_EQ(1, one_functor<signed short int>::value);
@@ -21,6 +22,7 @@ TEST(one_test, one_test)
 TEST(zero_test, zero_test)
 {
   using namespace primordialmachine;
+  ASSERT_EQ(0, zero_functor<char>::value);
   ASSERT_EQ(0, zero_functor<signed char>::value);
   ASSERT_EQ(0, zero_functor<unsigned char>::value);
   ASSERT_EQ(0, zero_functor<signed short int>::value);
