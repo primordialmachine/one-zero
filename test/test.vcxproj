@@ -36,22 +36,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>math-test</TargetName>
+    <TargetName>one-zero-functors-test</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>math-test</TargetName>
+    <TargetName>one-zero-functors-test</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>math-test</TargetName>
+    <TargetName>one-zero-functors-test</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)products\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
     <IntDir>$(SolutionDir)intermediates\$(ProjectName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <TargetName>math-test</TargetName>
+    <TargetName>one-zero-functors-test</TargetName>
   </PropertyGroup>
   <ItemGroup>
     <ClCompile Include="sources\one_zero_test.cpp" />
