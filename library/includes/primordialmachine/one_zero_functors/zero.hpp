@@ -25,7 +25,16 @@
 
 #pragma once
 
-#include "primordialmachine/one_zero_functors/one.hpp"
-#include "primordialmachine/one_zero_functors/one_functor.hpp"
-#include "primordialmachine/one_zero_functors/zero.hpp"
 #include "primordialmachine/one_zero_functors/zero_functor.hpp"
+
+namespace primordialmachine {
+
+template<typename TYPE>
+constexpr auto
+zero() noexcept(noexcept(zero_functor<TYPE>()()))
+  -> decltype(zero_functor<TYPE>()())
+{
+  return zero_functor<TYPE>()();
+}
+
+} // namespace primordialmachine

@@ -54,7 +54,8 @@
     <TargetName>one-zero-functors-test</TargetName>
   </PropertyGroup>
   <ItemGroup>
-    <ClCompile Include="sources\one_zero_test.cpp" />
+    <ClCompile Include="sources\one_test.cpp" />
+    <ClCompile Include="sources\zero_test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

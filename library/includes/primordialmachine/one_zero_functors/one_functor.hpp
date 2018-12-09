@@ -33,78 +33,78 @@ struct one_functor;
 template<>
 struct one_functor<char>
 {
-  static constexpr char value = 1;
+  constexpr char operator()() noexcept { return 1; }
 }; // struct one_functor
 
 template<>
 struct one_functor<signed char>
 {
-  static constexpr signed char value = 1;
+  constexpr signed char operator()() noexcept { return 1; }
 }; // struct one_functor
 template<>
 struct one_functor<unsigned char>
 {
-  static constexpr unsigned char value = 1;
+  constexpr unsigned char operator()() noexcept { return 1; }
 }; // struct one_functor
 
 template<>
 struct one_functor<signed short int>
 {
-  static constexpr signed short int value = 1;
+  constexpr signed short int operator()() noexcept { return 1; }
 }; // struct one_functor
 template<>
 struct one_functor<unsigned short int>
 {
-  static constexpr unsigned short int value = 1;
+  constexpr unsigned short int operator()() noexcept { return 1; }
 }; // struct one_functor
 
 template<>
 struct one_functor<signed int>
 {
-  static constexpr signed int value = 1;
+  constexpr signed int operator()() noexcept { return 1; }
 }; // struct one_functor
 template<>
 struct one_functor<unsigned int>
 {
-  static constexpr unsigned int value = 1;
+  constexpr unsigned int operator()() noexcept { return 1; }
 }; // struct one_functor
 
 template<>
 struct one_functor<signed long int>
 {
-  static constexpr signed long int value = 1L;
+  constexpr signed long int operator()() noexcept { return 1L; }
 }; // struct one_functor
 template<>
 struct one_functor<unsigned long int>
 {
-  static constexpr unsigned long int value = 1UL;
+  constexpr unsigned long int operator()() noexcept { return 1UL; }
 }; // struct one_functor
 
 template<>
 struct one_functor<signed long long int>
 {
-  static constexpr signed long long int value = 1LL;
+  constexpr signed long long int operator()() noexcept { return 1LL; }
 }; // struct one_functor
 template<>
 struct one_functor<unsigned long long int>
 {
-  static constexpr unsigned long long int value = 1ULL;
+  constexpr unsigned long long int operator()() noexcept { return 1ULL; }
 }; // struct one_functor
 
 template<>
 struct one_functor<float>
 {
-  static constexpr float value = 1.F;
+  constexpr float operator()() noexcept { return 1.F; };
 }; // struct one_functor
 template<>
 struct one_functor<double>
 {
-  static constexpr double value = 1.;
+  constexpr double operator()() noexcept { return 1.; };
 }; // struct one_functor
 template<>
 struct one_functor<long double>
 {
-  static constexpr long double value = 1.L;
+  constexpr long double operator()() noexcept { return 1.L; }
 }; // struct one_functor
 
 } // namespace primordialmachine

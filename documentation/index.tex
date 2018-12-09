@@ -82,13 +82,14 @@ $(Platform.toLower())/$(Configuration.toLower())/libraries
 The namespace this library is adding its declarations/definitions to.
 The added namespace elements are documented below.
 
-\subsection{\texttt{zero<TYPE>}}
+\subsection{\texttt{zero\_functor<TYPE>}}
 \begin{verbatim}
 template<typename TYPE>
 struct zero_functor;
 \end{verbatim}
-Provides a member constant value \texttt{value} of type \texttt{TYPE} approximating the value
-$0$ (zero). Specializations for the types
+Provides a const constexpr noexcept \texttt{operator()} which receives zero arguments and returns a
+value of type \texttt{TYPE} approximating the value $0$ (zero).
+Specializations for the types
 \texttt{char},
 \texttt{signed char},
 \texttt{unsigned char},
@@ -103,13 +104,14 @@ $0$ (zero). Specializations for the types
 \texttt{long double}
 are provided.
 
-\subsection{\texttt{one<TYPE>}}
+\subsection{\texttt{one\_functor<TYPE>}}
 \begin{verbatim}
 template<typename TYPE>
 struct one_functor;
 \end{verbatim}
-Provides a member constant value \texttt{value} of type \texttt{TYPE} approximating the value
-$1$ (one). Specializations for the types
+Provides a const constexpr noexcept \texttt{operator()} which receives zero arguments and returns a
+value of type \texttt{TYPE} approximating the value $1$ (one).
+Specializations for the types
 \texttt{char},
 \texttt{signed char},
 \texttt{unsigned char},
@@ -123,5 +125,29 @@ $1$ (one). Specializations for the types
 \texttt{double}, and
 \texttt{long double}
 are provided.
+
+\subsection{\texttt{zero<TYPE>()}}
+Function returning an approximation of type \texttt{TYPE} of the value $0$ (zero).
+\begin{verbatim}
+template<typename TYPE>
+constexpr auto zero() -> decltype(zero_functor<TYPE>()())
+{ return zero_functor<TYPE>()(); }
+\end{verbatim}
+
+\noindent{}Provides a constexpr \texttt{operator()} which receives zero arguments and returns a value of type
+\texttt{decltype\allowbreak(zero\allowbreak\_functor\allowbreak<TYPE>\allowbreak()())} approximating the value $0$ (zero).
+The function is noexcept if \texttt{zero\allowbreak\_\allowbreak functor<TYPE>()()} is noexcept otherwise not.
+
+\subsection{\texttt{one<TYPE>()}}
+Function returning an approximation of type \texttt{TYPE} of the value $1$ (one).
+\begin{verbatim}
+template<typename TYPE>
+constexpr auto one() -> decltype(one_functor<TYPE>()())
+{ return one_functor<TYPE>()(); }
+\end{verbatim}
+
+\noindent{}Provides a constexpr \texttt{operator()} which receives zero arguments and returns a value of type
+\texttt{decltype(one\allowbreak\_functor\allowbreak<TYPE>\allowbreak()())} approximating the value $1$ (one).
+The function is noexcept if \texttt{one\allowbreak\_\allowbreak functor<TYPE>()()} is noexcept otherwise not.
 
 \end{document}
