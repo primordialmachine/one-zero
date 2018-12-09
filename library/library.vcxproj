@@ -92,26 +92,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
     <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
     <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
-    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
     <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</IntDir>
-    <OutDir>$(SolutionDir)products\$(PackageName)\$(Platform.toLower())\$(Configuration.toLower())\</OutDir>
+    <IntDir>$(SolutionDir)intermediates\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</IntDir>
+    <OutDir>$(SolutionDir)products\$(PackageName)\$(PlatformTarget.toLower())\$(Configuration.toLower())\</OutDir>
     <TargetName>$(PackageName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -127,7 +127,7 @@
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
-      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\arithmetic-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\relational-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\error\$(Platform.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\error\$(PlatformTarget.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,7 +157,7 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
-      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\arithmetic-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\relational-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\error\$(Platform.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\error\$(PlatformTarget.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -186,7 +186,7 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
-      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\arithmetic-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\relational-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\error\$(Platform.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\error\$(PlatformTarget.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -220,7 +220,7 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <OpenMPSupport>false</OpenMPSupport>
       <EnableModules>false</EnableModules>
-      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\arithmetic-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\relational-functors\$(Platform.toLower())\$(Configuration.toLower())\includes\;$(SolutionDir)external\primordialmachine\error\$(Platform.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)includes;$(SolutionDir)external\primordialmachine\error\$(PlatformTarget.toLower())\$(Configuration.toLower())\includes\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

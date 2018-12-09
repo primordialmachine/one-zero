@@ -61,13 +61,13 @@ The library officially only supports Visual Studio 2017 and Windows 10.
     \item the include path
 \begin{verbatim}
 [library home]/primordialmachine/one-zero-functors/
-$(Platform.toLower())/$(Configuration.toLower())/includes
+$(PlatformTarget.toLower())/$(Configuration.toLower())/includes
 \end{verbatim}
 	and
     \item the library path
 \begin{verbatim}
 [library home]/primordialmachine/one-zero-functors/
-$(Platform.toLower())/$(Configuration.toLower())/libraries
+$(PlatformTarget.toLower())/$(Configuration.toLower())/libraries
 \end{verbatim}
     to your project.
 \end{enumerate}
