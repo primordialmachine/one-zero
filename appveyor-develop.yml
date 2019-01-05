@@ -71,6 +71,9 @@ configuration:
   - Debug
   - Release
 
+# Do not build on tags (GitHub and BitBucket)
+skip_tags: true
+
 environment:
   # Environment variables pertaining to the organization and package.
   ORGANIZATION_NAME : "primordialmachine"

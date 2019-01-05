@@ -61,6 +61,7 @@ image: Visual Studio 2017 # Build worker image (VM template)
 
 branches:
   only:
+    - develop
     - master
 
 platform:
