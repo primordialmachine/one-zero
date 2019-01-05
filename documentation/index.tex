@@ -23,31 +23,43 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[oneside]{article}
-\usepackage[utf8]{inputenc}
-\usepackage{xcolor}
-%
-\usepackage{lmodern}
-\usepackage{microtype}
-%
-\usepackage{graphicx}
-\usepackage[colorlinks]{hyperref}
-\usepackage[margin=0.75in]{geometry}
-\usepackage{amsmath,amssymb,amsfonts}
+\documentclass[oneside]{book}
 
 \input{common}
 
 \SetOrganization{Primordial Machine's}
 \SetLibraryName{One Zero Functors Library}
-\SetLibraryVersion{v1.4}
+
+\SetLibraryIncludeFileName{include.hpp}
+\SetLibraryIncludesDirectoryPath{primordialmachine/one-zero-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/includes}
+
+\SetLibraryIncludeDirectiveFilePath{primordialmachine/one\_zero\_functors/include.hpp}
+
+\SetLibraryStaticLibrariesDirectoryPath{primordialmachine/one-zero-functors/\newline\$(PlatformTarget.toLower())/\$(Configuration.toLower())/libraries}
+\SetLibraryStaticLibraryFileName{one-zero-functors.lib}
+
+\SetLibraryVersion{v1.5}
 \SetLibraryRepository{https://github.com/primordialmachine/one-zero-functors}
 \SetAuthor{Michael Heilmann}
 \SetEmail{michaelheilmann@primordialmachine.com}
 
+\SetDocumentType{User Manual}
+
 \begin{document}
+
+\frontmatter
+
+\begin{titlepage}
 \maketitle
+\end{titlepage}
+
 \tableofcontents
-\section{Synopsis}
+\addtocontents{toc}{\protect\thispagestyle{empty}}
+\pagenumbering{gobble}
+
+\mainmatter
+
+\chapter{Synopsis}
 C++ 17 library providing extendable abstractions of the constants zero and one.\newline
 
 \noindent{}This library provides functors which return the constant zero and one for most built-in types.
@@ -58,56 +70,25 @@ Furthermore, a consumer of this library can add additional partial specializatio
 under the
 \href{\GetLibraryRepository/blob/master/LICENSE}{MIT License}.
 
-\section{Requirements}
+\chapter{Requirements}
 None.
 
-\section{Limitations and Restrictions}
+\chapter{Limitations and Restrictions}
 The library officially only supports Visual Studio 2017 and Windows 10.
 
-\section{Introductory example}
+\chapter{Introductory example}
 \textit{\color{orange}This library does not provide any examples yet.}
 %Examples are located in the \href{\GetLibraryRepository/blob/master/examples}{examples} directory.
 
-\section{Building under Visual Studio 2017}
-\begin{enumerate}
-\item Open the solution \texttt{solution.sln} in Microsoft Visual Studio 2017.
-\item Batch build everything.
-\item The folder \texttt{packages} contains the distribution of the library i.e. include files and the
-      static libraries for
-  \begin{enumerate}
-    \item the platforms \texttt{Win32} and \texttt{x64} and
-    \item configurations \texttt{Release} and \texttt{Debug}.
-  \end{enumerate}
-\item Copy the contents of the \verb+packages+ folder into a directory. Let
-      \verb+[library home]+ be a placeholder denoting the path by which that folder
-      can be referenced from your project.
-\item Add
-  \begin{enumerate}
-    \item the include path
-\begin{verbatim}
-[library home]/primordialmachine/one-zero-functors/
-$(PlatformTarget.toLower())/$(Configuration.toLower())/includes
-\end{verbatim}
-	and
-    \item the library path
-\begin{verbatim}
-[library home]/primordialmachine/one-zero-functors/
-$(PlatformTarget.toLower())/$(Configuration.toLower())/libraries
-\end{verbatim}
-    to your project.
-\end{enumerate}
-\item Link your project with the library \verb+one-zero-functors.lib+.
-\item Add the include directive \verb+#include "primordialmachine/one_zero_functors/include.hpp"+ where appropriate.
-\item You can now use the functionality provided by the library.
-\end{enumerate}
+\include{building_visual_studio_2017}
 
-\section{Library Interface Documentation}
+\chapter{Library Interface Documentation}
 
-\subsection{\texttt{namespace primordialmachine}}
+\section{\texttt{namespace primordialmachine}}
 The namespace this library is adding its declarations/definitions to.
 The added namespace elements are documented below.
 
-\subsection{\texttt{zero\_functor<TYPE>}}
+\section{\texttt{zero\_functor\textlangle TYPE\textrangle}}
 \begin{verbatim}
 template<typename TYPE>
 struct zero_functor;
@@ -129,7 +110,7 @@ Specializations for the types
 \texttt{long double}
 are provided.
 
-\subsection{\texttt{one\_functor<TYPE>}}
+\section{\texttt{one\_functor\textlangle TYPE\textrangle}}
 \begin{verbatim}
 template<typename TYPE>
 struct one_functor;
@@ -151,7 +132,7 @@ Specializations for the types
 \texttt{long double}
 are provided.
 
-\subsection{\texttt{zero<TYPE>()}}
+\section{\texttt{zero\textlangle TYPE\textrangle()}}
 Function returning an approximation of type \texttt{TYPE} of the value $0$ (zero).
 \begin{verbatim}
 template<typename TYPE>
@@ -163,7 +144,7 @@ constexpr auto zero() -> decltype(zero_functor<TYPE>()())
 \texttt{decltype\allowbreak(zero\allowbreak\_functor\allowbreak<TYPE>\allowbreak()())} approximating the value $0$ (zero).
 The function is noexcept if \texttt{zero\allowbreak\_\allowbreak functor<TYPE>()()} is noexcept otherwise not.
 
-\subsection{\texttt{one<TYPE>()}}
+\section{\texttt{one\textlangle TYPE\textrangle()}}
 Function returning an approximation of type \texttt{TYPE} of the value $1$ (one).
 \begin{verbatim}
 template<typename TYPE>
