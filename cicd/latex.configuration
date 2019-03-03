@@ -11,3 +11,8 @@
 
 "CanonicalPackageTypeName": "library",
 "PackageTypeName" : "Library",
+"PackageVersion" : "1.7",
+
+"RepositoryUrl" : "https://github.com/primordialmachine/one-zero-functors",
+"Open" : "{",
+"Close" : "}"

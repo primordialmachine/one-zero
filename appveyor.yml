@@ -150,9 +150,10 @@ build_script:
 
 after_build:
    - ps: |
-       cd packages
+       cd build/packages
        7z a $env:ARTIFACT_FILENAME $($env:ORGANIZATION_CANONICAL_NAME.tolower())
-       Move-Item -Path ./$env:ARTIFACT_FILENAME -Destination ./../$env:ARTIFACT_FILENAME
+       Move-Item -Path ./$env:ARTIFACT_FILENAME -Destination ./../../$env:ARTIFACT_FILENAME
+       cd ..
        cd ..
    - ps: |
        Move-Item -Path documentation/index.pdf -Destination ./$env:DOCUMENTATION_ARTIFACT_FILENAME
@@ -163,7 +164,7 @@ test_script:
       $configuration=$env:configuration
       $platform=$env:platform
       $testAdapterPath="C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\GoogleTestAdapter-0.14.0"
-      $testPath="products\test\$platform\$configuration\$($env:PACKAGE_CANONICAL_NAME.tolower())-test.exe"
+      $testPath="build\products\test\$platform\$configuration\$($env:PACKAGE_CANONICAL_NAME.tolower())-test.exe"
       vstest.console /Logger:$logger /Platform:$platform /TestAdapterPath:$testAdapterPath /inIsolation $testPath
 
 artifacts:
