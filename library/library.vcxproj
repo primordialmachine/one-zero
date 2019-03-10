@@ -29,8 +29,10 @@
   <ItemGroup>
     <ClInclude Include="includes\primordialmachine\one_zero_functors\include.hpp" />
     <ClInclude Include="includes\primordialmachine\one_zero_functors\one.hpp" />
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\one_expr.hpp" />
     <ClInclude Include="includes\primordialmachine\one_zero_functors\one_functor.hpp" />
     <ClInclude Include="includes\primordialmachine\one_zero_functors\zero.hpp" />
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\zero_expr.hpp" />
     <ClInclude Include="includes\primordialmachine\one_zero_functors\zero_functor.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
@@ -137,8 +139,8 @@
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Outputs>
-      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one.hpp</Inputs>
     </CustomBuildStep>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -167,8 +169,8 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Inputs>
-      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one.hpp</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -198,8 +200,8 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Inputs>
-      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one.hpp</Outputs>
     </CustomBuildStep>
     <Lib>
       <TargetMachine>MachineX86</TargetMachine>
@@ -232,8 +234,8 @@ xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Command>xcopy $(ProjectDir)includes $(PackageDir)includes\ /S /E /Y
 xcopy $(OutDir)*.lib $(PackageDir)libraries\ /S /E /Y</Command>
       <Message>Create package.</Message>
-      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp</Inputs>
-      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp</Outputs>
+      <Inputs>$(ProjectDir)includes\primordialmachine\one_zero_functors\include.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(ProjectDir)includes\primordialmachine\one_zero_functors\one.hpp</Inputs>
+      <Outputs>$(PackageDir)includes\primordialmachine\one_zero_functors\include.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\zero.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_expr.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one_functor.hpp;$(PackageDir)includes\primordialmachine\one_zero_functors\one.hpp</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

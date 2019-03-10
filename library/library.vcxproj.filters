@@ -35,6 +35,12 @@
     <ClInclude Include="includes\primordialmachine\one_zero_functors\zero.hpp">
       <Filter>Headerdateien\one_zero_functors</Filter>
     </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\one_expr.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\zero_expr.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sources\primordialmachine\one_zero_functors\include.cpp">
