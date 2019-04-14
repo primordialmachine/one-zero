@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// Primordial Machine's One Zero Library
+// Primordial Machine's One Zero Functors Library
 // Copyright (C) 2017-2019 Michael Heilmann
 //
 // This software is provided 'as-is', without any express or implied warranty.
@@ -29,7 +29,7 @@
 // Performs the following tests:
 // c == f
 // where c is a literal representing one of type T and f is the one functor of type T.
-TEST(one_zero_tests, one_functor_test)
+TEST(one_zero_functors_tests, one_functor_test)
 {
   using namespace primordialmachine;
 

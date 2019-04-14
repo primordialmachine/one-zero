@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// Primordial Machine's One Zero Library
+// Primordial Machine's One Zero Functors Library
 // Copyright (C) 2017-2019 Michael Heilmann
 //
 // This software is provided 'as-is', without any express or implied warranty.
@@ -29,7 +29,7 @@
 // Performs the following tests:
 // c == f
 // where c is a literal of type T representing zero and f is the zero functor of type T.
-TEST(one_zero_tests, zero_functor_test)
+TEST(one_zero_functor_tests, zero_functor_test)
 {
   using namespace primordialmachine;
 
@@ -45,7 +45,6 @@ TEST(one_zero_tests, zero_functor_test)
 
   ASSERT_EQ(0LL, zero_functor<signed long long int>()());
   ASSERT_EQ(0ULL, zero_functor<unsigned long long int>()());
-
 
   ASSERT_EQ(INT8_C(0), zero_functor<int8_t>()());
   ASSERT_EQ(UINT8_C(0), zero_functor<uint8_t>()());
