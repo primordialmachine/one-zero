@@ -1,0 +1,31 @@
+\section{\texttt{zero\_functor\textlangle TYPE\textrangle}}
+\begin{verbatim}
+template<typename TYPE>
+struct zero_functor;
+\end{verbatim}
+Provides a constant constexpr noexcept \texttt{operator()} which receives zero arguments and returns a
+value of type \texttt{TYPE} approximating the value $0$ (zero).
+Specializations for the types
+\texttt{char},
+\texttt{signed char},
+\texttt{unsigned char},
+\texttt{signed short int}       (aka \texttt{short int},     aka \texttt{signed short},     aka \texttt{short}),
+\texttt{signed long int}        (aka \texttt{long int},      aka \texttt{signed long},      aka \texttt{long}),
+\texttt{signed long long int}   (aka \texttt{long long int}, aka \texttt{signed long long}, aka \texttt{long long}),
+\texttt{unsigned short int}     (aka \texttt{unsigned short}),
+\texttt{unsigned long int}      (aka \texttt{unsigned long}), and
+\texttt{unsigned long long int} (aka \texttt{unsigned long long}),
+\texttt{float},
+\texttt{double}, and
+\texttt{long double}
+are provided.
+
+\section{\texttt{zero\textlangle TYPE\textrangle()}}
+Function returning an approximation of type \texttt{TYPE} of the value $0$ (zero).
+\begin{verbatim}
+template<typename TYPE>
+constexpr auto zero() noexcept(noexcept(zero_functor<TYPE>()()))
+  -> decltype(zero_functor<TYPE>()())
+{ return zero_functor<TYPE>()(); }
+\end{verbatim}
+The function is constexpr if verb+zero_functor<TYPE>()()` is constexpr.

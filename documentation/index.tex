@@ -53,10 +53,9 @@
 \mainmatter
 
 \chapter{Synopsis}
-C++ 17 library providing extendable abstractions of the constants zero and one.\newline
-
-\noindent{}This library provides functors which return the constant zero and one for most built-in types.
-Furthermore, a consumer of this library can add additional partial specializations of these functors for arbitrary types.\newline
+C++ 17 library providing functors returning the zero value and the one value.\newline
+\noindent{}Implementations are provided for most built-in types.\newline
+\noindent{}Furthermore, consumers of this library can easily add specializations of these functors for built-in and user-defined types.\newline
 
 \noindent{}The library is made available publicly on
 \href{\GetLibraryRepository}{Github}
@@ -69,9 +68,7 @@ None.
 \chapter{Limitations and Restrictions}
 The library officially only supports Visual Studio 2017 and Windows 10.
 
-\chapter{Introductory example}
-\textit{\color{orange}This library does not provide any examples yet.}
-%Examples are located in the \href{\GetLibraryRepository/blob/master/examples}{examples} directory.
+\input{content/example}
 
 \input{building_visual_studio_2017}
 
@@ -81,72 +78,9 @@ The library officially only supports Visual Studio 2017 and Windows 10.
 The namespace this library is adding its declarations/definitions to.
 The added namespace elements are documented below.
 
-\section{\texttt{zero\_functor\textlangle TYPE\textrangle}}
-\begin{verbatim}
-template<typename TYPE>
-struct zero_functor;
-\end{verbatim}
-Provides a const constexpr noexcept \texttt{operator()} which receives zero arguments and returns a
-value of type \texttt{TYPE} approximating the value $0$ (zero).
-Specializations for the types
-\texttt{char},
-\texttt{signed char},
-\texttt{unsigned char},
-\texttt{signed short int}       (aka \texttt{short int},     aka \texttt{signed short},     aka \texttt{short}),
-\texttt{signed long int}        (aka \texttt{long int},      aka \texttt{signed long},      aka \texttt{long}),
-\texttt{signed long long int}   (aka \texttt{long long int}, aka \texttt{signed long long}, aka \texttt{long long}),
-\texttt{unsigned short int}     (aka \texttt{unsigned short}),
-\texttt{unsigned long int}      (aka \texttt{unsigned long}), and
-\texttt{unsigned long long int} (aka \texttt{unsigned long long}),
-\texttt{float},
-\texttt{double}, and
-\texttt{long double}
-are provided.
+\input{content/zero.tex}
+\input{content/one.tex}
 
-\section{\texttt{one\_functor\textlangle TYPE\textrangle}}
-\begin{verbatim}
-template<typename TYPE>
-struct one_functor;
-\end{verbatim}
-Provides a const constexpr noexcept \texttt{operator()} which receives zero arguments and returns a
-value of type \texttt{TYPE} approximating the value $1$ (one).
-Specializations for the types
-\texttt{char},
-\texttt{signed char},
-\texttt{unsigned char},
-\texttt{signed short int}       (aka \texttt{short int},     aka \texttt{signed short},     aka \texttt{short}),
-\texttt{signed long int}        (aka \texttt{long int},      aka \texttt{signed long},      aka \texttt{long}),
-\texttt{signed long long int}   (aka \texttt{long long int}, aka \texttt{signed long long}, aka \texttt{long long}),
-\texttt{unsigned short int}     (aka \texttt{unsigned short}),
-\texttt{unsigned long int}      (aka \texttt{unsigned long}), and
-\texttt{unsigned long long int} (aka \texttt{unsigned long long}),
-\texttt{float},
-\texttt{double}, and
-\texttt{long double}
-are provided.
-
-\section{\texttt{zero\textlangle TYPE\textrangle()}}
-Function returning an approximation of type \texttt{TYPE} of the value $0$ (zero).
-\begin{verbatim}
-template<typename TYPE>
-constexpr auto zero() -> decltype(zero_functor<TYPE>()())
-{ return zero_functor<TYPE>()(); }
-\end{verbatim}
-
-\noindent{}Provides a constexpr \texttt{operator()} which receives zero arguments and returns a value of type
-\texttt{decltype\allowbreak(zero\allowbreak\_functor\allowbreak<TYPE>\allowbreak()())} approximating the value $0$ (zero).
-The function is noexcept if \texttt{zero\allowbreak\_\allowbreak functor<TYPE>()()} is noexcept otherwise not.
-
-\section{\texttt{one\textlangle TYPE\textrangle()}}
-Function returning an approximation of type \texttt{TYPE} of the value $1$ (one).
-\begin{verbatim}
-template<typename TYPE>
-constexpr auto one() -> decltype(one_functor<TYPE>()())
-{ return one_functor<TYPE>()(); }
-\end{verbatim}
-
-\noindent{}Provides a constexpr \texttt{operator()} which receives zero arguments and returns a value of type
-\texttt{decltype(one\allowbreak\_functor\allowbreak<TYPE>\allowbreak()())} approximating the value $1$ (one).
-The function is noexcept if \texttt{one\allowbreak\_\allowbreak functor<TYPE>()()} is noexcept otherwise not.
+\input{bibliography}
 
 \end{document}

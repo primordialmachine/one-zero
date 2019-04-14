@@ -1,0 +1,55 @@
+\chapter{Example}
+To obtain the zero value and the one value of the builtin type \verb+float+:
+\begin{verbatim}
+using primordialmachine;
+zero<float>();
+one<float>();
+\end{verbatim}
+To obtain the zero value and the one value of the builtin type \verb+uint64_t+:
+\begin{verbatim}
+using primordialmachine;
+zero<uint64_t>();
+one<uint64_t>();
+\end{verbatim}
+
+Consumers can implement these functors for their own types by adding (partial) specializations of \verb+zero_expr+ and \verb+one_expr+.
+The following example implements the zero functor for a user-defined type \verb+template<typename U> V+ (we assume for this example
+that the default constructor \verb+V<U>()+ is the zero value of \verb+V<U>()+).
+\begin{verbatim}
+namespace primordialmachine {
+template<typename U>
+struct zero_expr<V<U>, void>
+{
+  using result_type = V<U>;
+  operator result_type() const noexcept(noexcept(result_type()))
+  { return result_type(); };
+}; // struct zero_expr
+} // namespace primordialmachine
+\end{verbatim}
+
+If the default constructor of \verb+V<U>+ is constexpr, one may add the \verb+constexpr+ keyword.
+\begin{verbatim}
+namespace primordialmachine {
+template<typename U>
+struct zero_expr<V<U>, void>
+{
+  using result_type = V<U>;
+  constexpr result_type() const noexcept(noexcept(result_type()))
+  { return result_type(); };
+}; // struct zero_expr
+} // namespace primordialmachine
+\end{verbatim}
+
+Furthermore, \verb+zero_expr+ and \verb+one_expr+ support SFINAE.
+The following example implements the same functor only if some side condition \verb+C+ evaluates to \verb+true+.
+\begin{verbatim}
+namespace primordialmachine {
+template<typename U>
+struct zero_expr<V<U>, std::enable_if_t<C()>>
+{
+  using result_type = V<U>;
+  constexpr auto operator()() const noexcept(noexcept(result_type()))
+  { return result_type(); };
+}; // struct zero_expr
+} // namespace primordialmachine
+\end{verbatim}
