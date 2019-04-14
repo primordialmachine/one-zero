@@ -28,7 +28,8 @@
 
 // Performs the following tests:
 // c == f
-// where c is a literal representing one of type T and f is the one functor of type T.
+// where c is a literal representing one of type T and f is the one functor of
+// type T.
 TEST(one_zero_functors_tests, one_functor_test)
 {
   using namespace primordialmachine;
@@ -37,12 +38,12 @@ TEST(one_zero_functors_tests, one_functor_test)
   ASSERT_EQ(1, one_functor<signed char>()());
   ASSERT_EQ(1, one_functor<unsigned char>()());
 
-  ASSERT_EQ(1, one_functor<signed short int>()());  
+  ASSERT_EQ(1, one_functor<signed short int>()());
   ASSERT_EQ(1, one_functor<unsigned short int>()());
 
   ASSERT_EQ(1L, one_functor<signed long int>()());
   ASSERT_EQ(1UL, one_functor<unsigned long int>()());
-  
+
   ASSERT_EQ(1LL, one_functor<signed long long int>()());
   ASSERT_EQ(1ULL, one_functor<unsigned long long int>()());
 

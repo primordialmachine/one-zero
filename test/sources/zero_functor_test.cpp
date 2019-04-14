@@ -28,7 +28,8 @@
 
 // Performs the following tests:
 // c == f
-// where c is a literal of type T representing zero and f is the zero functor of type T.
+// where c is a literal of type T representing zero and f is the zero functor of
+// type T.
 TEST(one_zero_functor_tests, zero_functor_test)
 {
   using namespace primordialmachine;
