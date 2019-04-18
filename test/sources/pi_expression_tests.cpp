@@ -23,20 +23,10 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "primordialmachine/one_zero_functors/include.hpp"
+#include "variable_expression_test.hpp"
+#include <gtest/gtest.h>
 
-#include "primordialmachine/one_zero_functors/zero_expr.hpp"
-
-namespace primordialmachine {
-
-template<typename T>
-struct zero_functor
-{
-  using result_type = typename zero_expr<T>::result_type;
-  constexpr result_type operator()() const noexcept
-  {
-    return zero_expr<result_type>();
-  }
-}; // struct zero_functor
-
-} // namespace primordialmachine
+TEST(one_zero_functor_tests, test_pi_expressions) {
+  VARIABLE_EXPRESSIONS_TESTS(pi_expression, is_pi_expression_v, "pi")
+}

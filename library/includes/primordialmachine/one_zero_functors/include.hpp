@@ -25,7 +25,18 @@
 
 #pragma once
 
+#include "primordialmachine/one_zero_functors/arithmetic_expression.hpp"
+#include "primordialmachine/one_zero_functors/compiletime_count_decimal_digits.hpp"
+#include "primordialmachine/one_zero_functors/e_expression.hpp"
+#include "primordialmachine/one_zero_functors/evaluate_add_expression_local.hpp"
+#include "primordialmachine/one_zero_functors/evaluate_affirmate_expression_local.hpp"
+#include "primordialmachine/one_zero_functors/evaluate_multiply_expression_local.hpp"
+#include "primordialmachine/one_zero_functors/evaluate_negate_expression_local.hpp"
+#include "primordialmachine/one_zero_functors/evaluate_subtract_expression_local.hpp"
+#include "primordialmachine/one_zero_functors/fraction_expression.hpp"
+#include "primordialmachine/one_zero_functors/integer_expression.hpp"
+#include "primordialmachine/one_zero_functors/euler_mascheroni_constant_expression.hpp"
 #include "primordialmachine/one_zero_functors/one.hpp"
 #include "primordialmachine/one_zero_functors/one_functor.hpp"
-#include "primordialmachine/one_zero_functors/zero.hpp"
-#include "primordialmachine/one_zero_functors/zero_functor.hpp"
+#include "primordialmachine/one_zero_functors/pi_expression.hpp"
+#include "primordialmachine/one_zero_functors/variable_expression.hpp"

@@ -30,7 +30,7 @@
 // c == f
 // where c is a literal representing one of type T and f is the one functor of
 // type T.
-TEST(one_zero_functors_tests, one_functor_test)
+TEST(one_zero_functor_tests, one_functor_test)
 {
   using namespace primordialmachine;
 

@@ -35,15 +35,15 @@ struct test
 
     ASSERT_TRUE(zero<T>() == zero<T>()); // 0 == 0
     ASSERT_TRUE(one<T>() == one<T>());   // 1 == 1
-    
-    ASSERT_TRUE(zero<T>() != one<T>());  // 0 != 1
-    ASSERT_TRUE(one<T>() != zero<T>());  // 1 != 0
-    
-    ASSERT_TRUE(one<T>() >= zero<T>());  // 1 >= 0
-    ASSERT_TRUE(zero<T>() <= one<T>());  // 0 <= 1
 
-    ASSERT_TRUE(one<T>() > zero<T>());   // 1 > 0
-    ASSERT_TRUE(zero<T>() < one<T>());   // 0 < 1
+    ASSERT_TRUE(zero<T>() != one<T>()); // 0 != 1
+    ASSERT_TRUE(one<T>() != zero<T>()); // 1 != 0
+
+    ASSERT_TRUE(one<T>() >= zero<T>()); // 1 >= 0
+    ASSERT_TRUE(zero<T>() <= one<T>()); // 0 <= 1
+
+    ASSERT_TRUE(one<T>() > zero<T>()); // 1 > 0
+    ASSERT_TRUE(zero<T>() < one<T>()); // 0 < 1
   }
 }; // struct test
 
@@ -56,21 +56,21 @@ struct test
 // * 0 <= 1
 // * 1 > 0
 // * 0 < 1
-TEST(one_zero_tests, one_zero_relational_tests)
+TEST(one_zero_functor_tests, one_zero_relational_tests)
 {
   test<char>()();
   test<signed char>()();
   test<unsigned char>()();
-  
+
   test<signed short int>()();
   test<unsigned short int>()();
-  
+
   test<signed long int>()();
   test<unsigned long int>()();
 
   test<signed long long int>()();
   test<unsigned long long int>()();
- 
+
   test<int8_t>()();
   test<uint8_t>()();
 
@@ -82,7 +82,7 @@ TEST(one_zero_tests, one_zero_relational_tests)
 
   test<int64_t>()();
   test<uint64_t>()();
-  
+
   test<float>()();
   test<double>()();
   test<long double>()();

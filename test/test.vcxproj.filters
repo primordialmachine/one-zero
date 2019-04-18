@@ -16,10 +16,31 @@
     <ClCompile Include="sources\function_equals_functor_tests.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="sources\one_functor_test.cpp">
+    <ClCompile Include="sources\e_expression_tests.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
-    <ClCompile Include="sources\zero_functor_test.cpp">
+    <ClCompile Include="sources\error_expression_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\fraction_expression_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\gcd_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\golden_ratio_expression_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\one_functor_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\pi_expression_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\zero_functor_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="sources\integer_expressions_tests.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>

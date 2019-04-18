@@ -24,42 +24,18 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 #include "primordialmachine/one_zero_functors/include.hpp"
+#include "variable_expression_test.hpp"
 #include <gtest/gtest.h>
 
-// Performs the following tests:
-// c == f
-// where c is a literal of type T representing zero and f is the zero functor of
-// type T.
-TEST(one_zero_functor_tests, zero_functor_test)
+TEST(one_zero_functors_tests, test_e_expressions)
 {
   using namespace primordialmachine;
-
-  ASSERT_EQ(0, zero_functor<char>()());
-  ASSERT_EQ(0, zero_functor<signed char>()());
-  ASSERT_EQ(0, zero_functor<unsigned char>()());
-
-  ASSERT_EQ(0, zero_functor<signed short int>()());
-  ASSERT_EQ(0, zero_functor<unsigned short int>()());
-
-  ASSERT_EQ(0L, zero_functor<signed long int>()());
-  ASSERT_EQ(0UL, zero_functor<unsigned long int>()());
-
-  ASSERT_EQ(0LL, zero_functor<signed long long int>()());
-  ASSERT_EQ(0ULL, zero_functor<unsigned long long int>()());
-
-  ASSERT_EQ(INT8_C(0), zero_functor<int8_t>()());
-  ASSERT_EQ(UINT8_C(0), zero_functor<uint8_t>()());
-
-  ASSERT_EQ(INT16_C(0), zero_functor<int16_t>()());
-  ASSERT_EQ(UINT16_C(0), zero_functor<uint16_t>()());
-
-  ASSERT_EQ(INT32_C(0), zero_functor<int32_t>()());
-  ASSERT_EQ(UINT32_C(0), zero_functor<uint32_t>()());
-
-  ASSERT_EQ(UINT64_C(0), zero_functor<uint64_t>()());
-  ASSERT_EQ(UINT64_C(0), zero_functor<uint64_t>()());
-
-  ASSERT_FLOAT_EQ(0.F, zero_functor<float>()());
-  ASSERT_DOUBLE_EQ(0., zero_functor<double>()());
-  ASSERT_DOUBLE_EQ(0.L, zero_functor<long double>()());
+  /*multiply(zero, v) -> zero*/
+  static_assert(is_zero_expression_v<
+                  multiply_expression<zero_expression, pi_expression>>,
+                "failed: multiply(zero, pi) -> zero"); /*multiply(v, zero) -> zero*/
+  static_assert(is_zero_expression_v<
+                  multiply_expression<pi_expression, zero_expression>>,
+                "failed: multiply(pi, zero) -> zero");\
+  VARIABLE_EXPRESSIONS_TESTS(e_expression, is_e_expression_v, "e");
 }

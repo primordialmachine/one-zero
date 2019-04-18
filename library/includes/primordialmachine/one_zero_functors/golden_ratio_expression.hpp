@@ -23,57 +23,25 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#include "primordialmachine/one_zero_functors/include.hpp"
-#include <gtest/gtest.h>
+#pragma once
+
+#include "primordialmachine/one_zero_functors/variable_expression.hpp"
+
+namespace primordialmachine {
+
+struct _is_golden_ratio_expression
+{};
+
+struct golden_ratio_expression
+  : public expression
+  , public variable_expression
+  , public _is_golden_ratio_expression
+{
+  static std::string to_string() { return "golden_ratio"; }
+}; // struct golden_ratio_expression
 
 template<typename T>
-struct test
-{
-  void operator()() const
-  {
-    using namespace primordialmachine;
-    ASSERT_EQ(one_functor<T>()(), one<T>());
-    ASSERT_EQ(one<T>(), one_functor<T>()());
-    ASSERT_EQ(zero_functor<T>()(), zero<T>());
-    ASSERT_EQ(zero<T>(), zero_functor<T>()());
-  }
-}; // struct test
+constexpr bool is_golden_ratio_expression_v =
+  std::is_base_of<_is_golden_ratio_expression, T>::value;
 
-// Performs the following tests:
-// * functor == function
-// * function == functor
-// for the one functor/function.
-// * functor == function
-// * function == functor
-// for the zero functor/function.
-TEST(one_zero_functor_tests, function_equals_functor_tests)
-{
-  test<char>()();
-  test<signed char>()();
-  test<unsigned char>()();
-
-  test<signed short int>()();
-  test<unsigned short int>()();
-
-  test<signed long int>()();
-  test<unsigned long int>()();
-
-  test<signed long long int>()();
-  test<unsigned long long int>()();
-
-  test<int8_t>()();
-  test<uint8_t>()();
-
-  test<int16_t>()();
-  test<uint16_t>()();
-
-  test<int32_t>()();
-  test<uint32_t>()();
-
-  test<int64_t>()();
-  test<uint64_t>()();
-
-  test<float>()();
-  test<double>()();
-  test<long double>()();
-}
+} // namespace primordialmachine

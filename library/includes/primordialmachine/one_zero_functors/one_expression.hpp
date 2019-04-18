@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// Primordial Machine's One Zero Library
+// Primordial Machine's One Zero Functors Library
 // Copyright (C) 2017-2019 Michael Heilmann
 //
 // This software is provided 'as-is', without any express or implied warranty.
@@ -25,39 +25,23 @@
 
 #pragma once
 
-#include "primordialmachine/one_zero_functors/one_functor.hpp"
+#include "primordialmachine/one_zero_functors/expression.hpp"
 
 namespace primordialmachine {
 
-template<typename TYPE>
-constexpr auto
-pi() noexcept(noexcept(pi_functor<TYPE>()()))
-  -> decltype(pi_functor<TYPE>()())
-{
-  return pi_functor<TYPE>()();
-}
+struct _is_one_expression
+{};
+template<typename T>
+constexpr bool is_one_expression_v =
+  std::is_base_of<_is_one_expression, T>::value;
 
-template<typename TYPE>
-constexpr auto
-euler_mascheroni_constant() noexcept(noexcept(euler_mascheroni_constant_functor<TYPE>()())) -> decltype(euler_mascheroni_constant_functor<TYPE>()())
+struct one_expression_impl
+  : public expression
+  , public _is_one_expression
 {
-  return euler_mascheroni_constant_functor<TYPE>()();
-}
+  static std::string to_string() { return "one"; }
+}; // struct one_expression_impl
 
-template<typename TYPE>
-constexpr auto
-one() noexcept(noexcept(one_functor<TYPE>()()))
-  -> decltype(one_functor<TYPE>()())
-{
-  return one_functor<TYPE>()();
-}
-
-template<typename TYPE>
-constexpr auto
-zero() noexcept(noexcept(zero_functor<TYPE>()()))
-  -> decltype(zero_functor<TYPE>()())
-{
-  return zero_functor<TYPE>()();
-}
+using one_expression = one_expression_impl;
 
 } // namespace primordialmachine

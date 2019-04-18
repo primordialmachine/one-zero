@@ -1,7 +1,7 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// Primordial Machine's One Zero Library
-// Copyright (C) 2017-2019 Michael Heilmann
+// Primordial Machine's Constants Library
+// Copyright (c) 2017-2019 Michael Heilmann
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the
@@ -23,41 +23,12 @@
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-#pragma once
+#include "primordialmachine/one_zero_functors/include.hpp"
+#include "gtest/gtest.h"
 
-#include "primordialmachine/one_zero_functors/one_functor.hpp"
-
-namespace primordialmachine {
-
-template<typename TYPE>
-constexpr auto
-pi() noexcept(noexcept(pi_functor<TYPE>()()))
-  -> decltype(pi_functor<TYPE>()())
+TEST(gcd_tests, gdc_test)
 {
-  return pi_functor<TYPE>()();
+  using namespace primordialmachine;
+  static_assert(1 == gcd<1, 1>(), "failed: gcd(1,1) -> 1");
+  static_assert(1 == gcd<3, 2>(), "failed: gcd(3,2) -> 1");
 }
-
-template<typename TYPE>
-constexpr auto
-euler_mascheroni_constant() noexcept(noexcept(euler_mascheroni_constant_functor<TYPE>()())) -> decltype(euler_mascheroni_constant_functor<TYPE>()())
-{
-  return euler_mascheroni_constant_functor<TYPE>()();
-}
-
-template<typename TYPE>
-constexpr auto
-one() noexcept(noexcept(one_functor<TYPE>()()))
-  -> decltype(one_functor<TYPE>()())
-{
-  return one_functor<TYPE>()();
-}
-
-template<typename TYPE>
-constexpr auto
-zero() noexcept(noexcept(zero_functor<TYPE>()()))
-  -> decltype(zero_functor<TYPE>()())
-{
-  return zero_functor<TYPE>()();
-}
-
-} // namespace primordialmachine

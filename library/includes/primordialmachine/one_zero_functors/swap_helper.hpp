@@ -1,6 +1,6 @@
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// Primordial Machine's One Zero Library
+// Primordial Machine's One Zero Functors Library
 // Copyright (C) 2017-2019 Michael Heilmann
 //
 // This software is provided 'as-is', without any express or implied warranty.
@@ -25,39 +25,28 @@
 
 #pragma once
 
-#include "primordialmachine/one_zero_functors/one_functor.hpp"
+#include "primordialmachine/one_zero_functors/expression.hpp"
+#include "primordialmachine/one_zero_functors/fraction_expression.hpp"
 
 namespace primordialmachine {
 
-template<typename TYPE>
-constexpr auto
-pi() noexcept(noexcept(pi_functor<TYPE>()()))
-  -> decltype(pi_functor<TYPE>()())
-{
-  return pi_functor<TYPE>()();
-}
+// f(e0, e1) -> f(e1, e0)
+// f in (ADD U MULTIPLY U FRACTION)
+// e0, e1 in EXPRESSION
+template<typename EXPRESSION, typename ENABLED = void>
+struct swap_implementation;
 
-template<typename TYPE>
-constexpr auto
-euler_mascheroni_constant() noexcept(noexcept(euler_mascheroni_constant_functor<TYPE>()())) -> decltype(euler_mascheroni_constant_functor<TYPE>()())
+template<typename EXPRESSION>
+struct swap_implementation<EXPRESSION,
+                           enable_if<(is_add_expression_v<EXPRESSION> ||
+                                      is_multiply_expression_v<EXPRESSION> ||
+                                      is_fraction_expression_v<EXPRESSION>)>>
 {
-  return euler_mascheroni_constant_functor<TYPE>()();
-}
+  using type =
+    add_expression<right_operand<EXPRESSION>, left_operand<EXPRESSION>>;
+}; // struct swap_implementation
 
-template<typename TYPE>
-constexpr auto
-one() noexcept(noexcept(one_functor<TYPE>()()))
-  -> decltype(one_functor<TYPE>()())
-{
-  return one_functor<TYPE>()();
-}
-
-template<typename TYPE>
-constexpr auto
-zero() noexcept(noexcept(zero_functor<TYPE>()()))
-  -> decltype(zero_functor<TYPE>()())
-{
-  return zero_functor<TYPE>()();
-}
+template<typename EXPRESSION>
+using swap = typename swap_implementation<EXPRESSION>::type;
 
 } // namespace primordialmachine

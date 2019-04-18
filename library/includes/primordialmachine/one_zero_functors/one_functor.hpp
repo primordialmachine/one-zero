@@ -25,18 +25,73 @@
 
 #pragma once
 
-#include "primordialmachine/one_zero_functors/one_expr.hpp"
+#include "primordialmachine/one_zero_functors/value_of_euler_mascheroni_constant_expression.hpp"
+#include "primordialmachine/one_zero_functors/value_of_e_expression.hpp"
+#include "primordialmachine/one_zero_functors/value_of_golden_ratio_expression.hpp"
+#include "primordialmachine/one_zero_functors/value_of_one_expression.hpp"
+#include "primordialmachine/one_zero_functors/value_of_pi_expression.hpp"
+#include "primordialmachine/one_zero_functors/value_of_zero_expression.hpp"
 
 namespace primordialmachine {
 
 template<typename T>
 struct one_functor
 {
-  using result_type = typename one_expr<T>::result_type;
+  using result_type = T;
   constexpr result_type operator()() const noexcept
   {
-    return one_expr<result_type>();
+    return value_of_expression<T, one_expression>()();
   }
 }; // struct one_functor
+
+template<typename T>
+struct pi_functor
+{
+  using result_type = T;
+  constexpr result_type operator()() const noexcept
+  {
+    return value_of_expression<T, pi_expression>()();
+  }
+}; // struct pi_functor
+
+template<typename T>
+struct zero_functor
+{
+  using result_type = T;
+  constexpr result_type operator()() const noexcept
+  {
+    return value_of_expression<T, zero_expression>()();
+  }
+}; // struct zero_functor
+
+template<typename T>
+struct e_functor
+{
+  using result_type = T;
+  constexpr result_type operator()() const noexcept
+  {
+    return value_of_expression<T, e_expression>()();
+  }
+}; // struct e_functor
+
+template<typename T>
+struct golden_ratio_functor
+{
+  using result_type = T;
+  constexpr result_type operator()() const noexcept
+  {
+    return value_of_expression<T, golden_ratio_expression>()();
+  }
+}; // struct golden_ratio_functor
+
+template<typename T>
+struct euler_mascheroni_constant_functor
+{
+  using result_type = T;
+  constexpr result_type operator()() const noexcept
+  {
+    return value_of_expression<T, euler_mascheroni_constant_expression>()();
+  }
+}; // struct euler_mascheroni_constant_functor
 
 } // namespace primordialmachine

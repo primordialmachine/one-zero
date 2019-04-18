@@ -68,10 +68,17 @@
     <TargetName>one-zero-functors-test</TargetName>
   </PropertyGroup>
   <ItemGroup>
+    <ClCompile Include="sources\error_expression_tests.cpp" />
+    <ClCompile Include="sources\e_expression_tests.cpp" />
+    <ClCompile Include="sources\fraction_expression_tests.cpp" />
+    <ClCompile Include="sources\gcd_tests.cpp" />
+    <ClCompile Include="sources\golden_ratio_expression_tests.cpp" />
+    <ClCompile Include="sources\integer_expressions_tests.cpp" />
     <ClCompile Include="sources\one_zero_relational_tests.cpp" />
-    <ClCompile Include="sources\one_functor_test.cpp" />
+    <ClCompile Include="sources\one_functor_tests.cpp" />
     <ClCompile Include="sources\function_equals_functor_tests.cpp" />
-    <ClCompile Include="sources\zero_functor_test.cpp" />
+    <ClCompile Include="sources\pi_expression_tests.cpp" />
+    <ClCompile Include="sources\zero_functor_tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
