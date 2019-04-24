@@ -33,51 +33,51 @@
     using namespace primordialmachine;\
 \
   /*subtract(v, v) -> zero*/\
-  static_assert(is_zero_expression_v<subtract_expression<VARIABLE_EXPRESSION, VARIABLE_EXPRESSION>>,\
+  static_assert(is_zero_expression_v<subtraction_expression<VARIABLE_EXPRESSION, VARIABLE_EXPRESSION>>,\
                 "failed: subtract(" VARIABLE_NAME ", " VARIABLE_NAME ") -> zero");\
 \
   /*affirmate(v) -> v*/\
-  static_assert(IS_VARIABLE_EXPRESSION<affirmate_expression<VARIABLE_EXPRESSION>>,\
+  static_assert(IS_VARIABLE_EXPRESSION<affirmation_expression<VARIABLE_EXPRESSION>>,\
                 "failed: affirmate(" VARIABLE_NAME ") -> " VARIABLE_NAME);\
   /*negate(v) -> negate(v)*/\
-  static_assert(is_negate_expression_v<negate_expression<VARIABLE_EXPRESSION>> &&\
-                IS_VARIABLE_EXPRESSION<operand<negate_expression<VARIABLE_EXPRESSION>>>,\
+  static_assert(is_negation_expression_v<negation_expression<VARIABLE_EXPRESSION>> &&\
+                IS_VARIABLE_EXPRESSION<operand<negation_expression<VARIABLE_EXPRESSION>>>,\
                 "failed: negate(" VARIABLE_NAME ") -> negate(" VARIABLE_NAME ")");\
 \
-  /*v + negate(v) -> zero*/\
-  static_assert(is_zero_expression_v<add_expression<VARIABLE_EXPRESSION, negate_expression<VARIABLE_EXPRESSION>>>,\
+  /*v + negation(v) -> zero*/\
+  static_assert(is_zero_expression_v<addition_expression<VARIABLE_EXPRESSION, negation_expression<VARIABLE_EXPRESSION>>>,\
                 "failed: " VARIABLE_NAME " + negate(" VARIABLE_NAME ") -> zero");\
-  /*negate(v) + v -> zero*/\
-  static_assert(is_zero_expression_v<add_expression<negate_expression<VARIABLE_EXPRESSION>, VARIABLE_EXPRESSION>>,\
+  /*negation(v) + v -> zero*/\
+  static_assert(is_zero_expression_v<addition_expression<negation_expression<VARIABLE_EXPRESSION>, VARIABLE_EXPRESSION>>,\
                 "failed: negate(" VARIABLE_NAME ") + " VARIABLE_NAME " -> zero");\
 \
-  /*multiply(one, v) -> v*/\
-  static_assert(IS_VARIABLE_EXPRESSION<multiply_expression<one_expression, VARIABLE_EXPRESSION>>,\
+  /*multiplication(one, v) -> v*/\
+  static_assert(IS_VARIABLE_EXPRESSION<multiplication_expression<one_expression, VARIABLE_EXPRESSION>>,\
                 "failed: multiply(one, " VARIABLE_NAME ") -> " VARIABLE_NAME);\
-  /*multiply(v, one) -> v*/\
-  static_assert(IS_VARIABLE_EXPRESSION<multiply_expression<VARIABLE_EXPRESSION, one_expression>>,\
+  /*multiplication(v, one) -> v*/\
+  static_assert(IS_VARIABLE_EXPRESSION<multiplication_expression<VARIABLE_EXPRESSION, one_expression>>,\
                 "failed: multiply(" VARIABLE_NAME ", one) -> " VARIABLE_NAME);\
 \
-  /*multiply(zero, v) -> zero*/\
-  static_assert(is_zero_expression_v<multiply_expression<zero_expression, VARIABLE_EXPRESSION>>,\
+  /*multiplication(zero, v) -> zero*/\
+  static_assert(is_zero_expression_v<multiplication_expression<zero_expression, VARIABLE_EXPRESSION>>,\
                 "failed: multiply(zero, " VARIABLE_NAME ") -> zero");\
-  /*multiply(v, zero) -> zero*/\
-  static_assert(is_zero_expression_v<multiply_expression<VARIABLE_EXPRESSION, zero_expression>>,\
+  /*multiplication(v, zero) -> zero*/\
+  static_assert(is_zero_expression_v<multiplication_expression<VARIABLE_EXPRESSION, zero_expression>>,\
                 "failed: multiply(" VARIABLE_NAME ", zero) -> zero");\
 \
-  /*add(zero, v) -> v*/\
-  static_assert(IS_VARIABLE_EXPRESSION<add_expression<zero_expression, VARIABLE_EXPRESSION>>,\
+  /*addition(zero, v) -> v*/\
+  static_assert(IS_VARIABLE_EXPRESSION<addition_expression<zero_expression, VARIABLE_EXPRESSION>>,\
                 "failed: add(zero, " VARIABLE_NAME ") -> " VARIABLE_NAME);\
-  /*add(v, zero) -> v*/\
-  static_assert(IS_VARIABLE_EXPRESSION<add_expression<VARIABLE_EXPRESSION, zero_expression>>,\
+  /*addition(v, zero) -> v*/\
+  static_assert(IS_VARIABLE_EXPRESSION<addition_expression<VARIABLE_EXPRESSION, zero_expression>>,\
                 "failed: add(" VARIABLE_NAME ", zero) -> " VARIABLE_NAME);\
 \
-  /*subtract(v, zero) -> v*/\
-  static_assert(IS_VARIABLE_EXPRESSION<subtract_expression<VARIABLE_EXPRESSION, zero_expression>>,\
+  /*subtraction(v, zero) -> v*/\
+  static_assert(IS_VARIABLE_EXPRESSION<subtraction_expression<VARIABLE_EXPRESSION, zero_expression>>,\
                 "failed: " VARIABLE_NAME " - zero -> " VARIABLE_NAME);\
 \
-  /*add(v, v) -> multiply(v, 2)*/\
-  static_assert(are_same_v<multiply_expression<VARIABLE_EXPRESSION, integer_expression<2>>, add_expression<VARIABLE_EXPRESSION, VARIABLE_EXPRESSION>>,\
+  /*addition(v, v) -> multiplication(v, 2)*/\
+  static_assert(are_same_v<multiplication_expression<VARIABLE_EXPRESSION, integer_expression<2>>, addition_expression<VARIABLE_EXPRESSION, VARIABLE_EXPRESSION>>,\
                 "failed: " VARIABLE_NAME " + " VARIABLE_NAME " -> " VARIABLE_NAME " * 2");\
 }
 

@@ -6,46 +6,51 @@
 
 namespace primordialmachine {
 
-// V + negate(E) -> V - E
+// Distributive law.
+// multiplication(a, addition|subtraction(b,c))
+// ->
+// addition|subtraction(multiplication(a,b),multiplication(a,c))
+
+// addition(a, negation(b)) -> subtraction(a, b)
 template<typename EXPRESSION>
-struct evaluate_add_expression<
+struct evaluate_addition_expression<
   EXPRESSION,
-  enable_if<is_negate_expression_v<right_operand<EXPRESSION>> &&
+  enable_if<is_negation_expression_v<right_operand<EXPRESSION>> &&
             is_variable_expression_v<left_operand<EXPRESSION>>>>
 {
-  using type = subtract_expression<left_operand<EXPRESSION>,
+  using type = subtraction_expression<left_operand<EXPRESSION>,
                                    operand<right_operand<EXPRESSION>>>;
 };
 
-// negate(E) + V -> V + negate(E)
+// addition(negation(a), b) -> addition(a, negation(b))
 template<typename EXPRESSION>
-struct evaluate_add_expression<
+struct evaluate_addition_expression<
   EXPRESSION,
-  enable_if<is_negate_expression_v<left_operand<EXPRESSION>> &&
+  enable_if<is_negation_expression_v<left_operand<EXPRESSION>> &&
             is_variable_expression_v<right_operand<EXPRESSION>>>>
 {
   using type = swap<EXPRESSION>;
-}; // struct evaluate_add_expression
+}; // struct evaluate_addition_expression
 
 } // namespace primordialmachine
 
 namespace primordialmachine {
 
 template<typename EXPRESSION>
-struct evaluate_add_expression<
+struct evaluate_addition_expression<
   EXPRESSION,
-  enable_if<is_multiply_expression_v<left_operand<EXPRESSION>> &&
+  enable_if<is_multiplication_expression_v<left_operand<EXPRESSION>> &&
             is_integer_expression_v<right_operand<EXPRESSION>>>>
 {
   using type = EXPRESSION;
-};
+}; // struct evaluate_addition_expression
 
 // (V0 + C0) + (V1 + C1) -> (V0 + V1) + (C0 + C1)
 template<typename EXPRESSION>
-struct evaluate_add_expression<
+struct evaluate_addition_expression<
   EXPRESSION,
-  enable_if<is_add_expression_v<left_operand<EXPRESSION>> &&
-            is_add_expression_v<right_operand<EXPRESSION>> &&
+  enable_if<is_addition_expression_v<left_operand<EXPRESSION>> &&
+            is_addition_expression_v<right_operand<EXPRESSION>> &&
             is_integer_expression_v<right_operand<left_operand<EXPRESSION>>> &&
             is_integer_expression_v<right_operand<right_operand<EXPRESSION>>>>>
 {
@@ -55,16 +60,16 @@ struct evaluate_add_expression<
   using c0 = right_operand<left_operand<EXPRESSION>>;
   using c1 = right_operand<right_operand<EXPRESSION>>;
 
-  using type = add_expression<add_expression<v0, v1>, add_expression<c0, c1>>;
-};
+  using type = addition_expression<addition_expression<v0, v1>, addition_expression<c0, c1>>;
+}; // struct evaluate_addition_expression
 
-// subtract(add(e0, c0), add(e1, c1))
-// -> add(subtract(e0, e1), subtract(c0, c1))
+// subtraction(addition(e0, c0), addition(e1, c1))
+// -> addition(subtraction(e0, e1), subtraction(c0, c1))
 template<typename EXPRESSION>
-struct evaluate_subtract_expression<
+struct evaluate_subtraction_expression<
   EXPRESSION,
-  enable_if<is_add_expression_v<left_operand<EXPRESSION>> &&
-            is_add_expression_v<right_operand<EXPRESSION>> &&
+  enable_if<is_addition_expression_v<left_operand<EXPRESSION>> &&
+            is_addition_expression_v<right_operand<EXPRESSION>> &&
             is_integer_expression_v<right_operand<left_operand<EXPRESSION>>> &&
             is_integer_expression_v<right_operand<right_operand<EXPRESSION>>>>>
 {
@@ -75,16 +80,16 @@ struct evaluate_subtract_expression<
   using c1 = right_operand<right_operand<EXPRESSION>>;
 
   using type =
-    add_expression<subtract_expression<e0, e1>, subtract_expression<c0, c1>>;
+    addition_expression<subtraction_expression<e0, e1>, subtraction_expression<c0, c1>>;
 };
 
-// fraction(multiply(e0, c0), multiply(e1, c1))
-// -> multiply(fraction(e0, e1), fraction(c0, c1))
+// fraction(multiplication(e0, c0), multiplication(e1, c1))
+// -> multiplication(fraction(e0, e1), fraction(c0, c1))
 template<typename EXPRESSION>
 struct evaluate_fraction_expression<
   EXPRESSION,
-  enable_if<is_multiply_expression_v<left_operand<EXPRESSION>> &&
-            is_multiply_expression_v<right_operand<EXPRESSION>> &&
+  enable_if<is_multiplication_expression_v<left_operand<EXPRESSION>> &&
+            is_multiplication_expression_v<right_operand<EXPRESSION>> &&
             is_constant_expression_v<right_operand<left_operand<EXPRESSION>>> &&
             is_constant_expression_v<right_operand<right_operand<EXPRESSION>>>>>
 {
@@ -94,9 +99,9 @@ struct evaluate_fraction_expression<
   using c0 = right_operand<left_operand<EXPRESSION>>;
   using c1 = right_operand<right_operand<EXPRESSION>>;
 
-  using type = multiply_expression<fraction_expression<e0, e1>,
+  using type = multiplication_expression<fraction_expression<e0, e1>,
                                    fraction_expression<c0, c1>>;
-};
+}; // struct evaluate_fraction_expression
 
 template<typename EXPRESSION>
 struct evaluate_fraction_expression<
@@ -107,6 +112,6 @@ struct evaluate_fraction_expression<
              is_variable_expression_v<denominator<EXPRESSION>>)>>
 {
   using type = EXPRESSION;
-};
+}; // struct evaluate_fraction_expression
 
 } // namespace primordialmachine

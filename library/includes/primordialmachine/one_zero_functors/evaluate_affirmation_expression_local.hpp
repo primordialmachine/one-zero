@@ -5,13 +5,13 @@
 
 namespace primordialmachine {
 
-// affirmate(E) -> E
+// affirmation(a) -> a
 template<typename EXPRESSION>
-struct evaluate_affirmate_expression<
+struct evaluate_affirmation_expression<
   EXPRESSION,
   enable_if<is_expression_v<operand<EXPRESSION>>>>
 {
   using type = operand<EXPRESSION>;
-}; // struct evaluate_affirmate_expression
+}; // struct evaluate_affirmation_expression
 
 } // namespace primordialmachine

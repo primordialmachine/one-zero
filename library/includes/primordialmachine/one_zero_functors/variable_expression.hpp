@@ -1,11 +1,6 @@
-// V * one -> V
-//
-// C * V -> V * C
-// C + V -> V + C
-//
-// where C in (zero U one U integers U fractions) and V in variables .
 #pragma once
 
+#include "primordialmachine/one_zero_functors/swap_helper.hpp"
 #include "primordialmachine/one_zero_functors/constant_expression.hpp"
 
 namespace primordialmachine {
@@ -23,27 +18,26 @@ template<typename A, typename B>
 constexpr bool are_same_variable_v = is_variable_expression_v<A>&&
   is_variable_expression_v<B>&& std::is_same_v<A, B>;
 
-// multiply(integer, variable) -> multiply(variable, integer)
+// multiplication(a, b) -> multiplication(b, a)
+// a in INTEGER, b in VARIABLE
 template<typename EXPRESSION>
-struct evaluate_multiply_expression<
+struct evaluate_multiplication_expression<
   EXPRESSION,
   enable_if<is_integer_expression_v<left_operand<EXPRESSION>> &&
             is_variable_expression_v<right_operand<EXPRESSION>>>>
 {
-  using type =
-    multiply_expression<right_operand<EXPRESSION>,
-                        left_operand<EXPRESSION>>; // TODO: Define and use
-                                                   // swap_operands.
-}; // struct evaluate_multiply_expression
+  using type = swap<EXPRESSION>;
+}; // struct evaluate_multiplication_expression
 
-// V * I -> V * I
+// multiplication(a, b) -> multiplication(a, b)
+// a in VARIABLE, b in INTEGER
 template<typename EXPRESSION>
-struct evaluate_multiply_expression<
+struct evaluate_multiplication_expression<
   EXPRESSION,
   enable_if<is_variable_expression_v<left_operand<EXPRESSION>> &&
             is_integer_expression_v<right_operand<EXPRESSION>>>>
 {
   using type = EXPRESSION;
-}; // struct evaluate_multiply_expression
+}; // struct evaluate_multiplication_expression
 
 } // namespace primordialmachine

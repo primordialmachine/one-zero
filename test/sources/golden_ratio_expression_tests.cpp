@@ -29,6 +29,5 @@
 
 TEST(one_zero_functors_tests, test_golden_ratio_expressions)
 {
-  VARIABLE_EXPRESSIONS_TESTS(
-    golden_ratio_expression, is_golden_ratio_expression_v, "golden_ratio");
+  VARIABLE_EXPRESSIONS_TESTS(golden_ratio_expression, is_golden_ratio_expression_v, "golden_ratio");
 }

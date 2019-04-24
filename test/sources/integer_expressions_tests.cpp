@@ -32,19 +32,19 @@ TEST(one_zero_functor_tests, test_integer_expression_1)
 
   // add(integer(INT32_MAX), integer(INT32_MAX)) -> error
   static_assert(
-    is_error_expression_v<add_expression<integer_expression<INT32_MAX>,
+    is_error_expression_v<addition_expression<integer_expression<INT32_MAX>,
                                          integer_expression<INT32_MAX>>>,
     "failed: add(integer(INT32_MAX), integer(INT32_MAX)) -> error");
 
   // subtract(integer(INT32_MIN), integer(INT32_MAX)) -> error
   static_assert(
-    is_error_expression_v<subtract_expression<integer_expression<INT32_MIN>,
+    is_error_expression_v<subtraction_expression<integer_expression<INT32_MIN>,
                                               integer_expression<INT32_MAX>>>,
     "failed: subtract(integer(INT32_MIN), integer(INT32_MAX)) -> error");
 
   // multiply(integer(INT32_MAX), integer(INT32_MAX)) -> error
   static_assert(
-    is_error_expression_v<multiply_expression<integer_expression<INT32_MAX>,
+    is_error_expression_v<multiplication_expression<integer_expression<INT32_MAX>,
                                               integer_expression<INT32_MAX>>>,
     "failed: multiply(integer(INT32_MAX), integer(INT32_MAX)) -> error");
 }
@@ -56,21 +56,21 @@ TEST(one_zero_functor_tests, test_integer_expression_2)
   // add(integer(7), integer(5)) -> integer(12)
   static_assert(
     are_same_v<integer_expression<12>,
-               add_expression<integer_expression<7>, integer_expression<5>>>,
+               addition_expression<integer_expression<7>, integer_expression<5>>>,
     "failed: add(integer(7), integer(5)) -> integer(12)");
 
   // subtract(integer(7), integer(5)) -> integer(2)
   static_assert(
     are_same_v<
       integer_expression<2>,
-      subtract_expression<integer_expression<7>, integer_expression<5>>>,
+      subtraction_expression<integer_expression<7>, integer_expression<5>>>,
     "failed: subtract(integer(7), integer(5)) -> integer(2)");
 
   // multiply(integer(7), integer(5)) -> integer(35)
   static_assert(
     are_same_v<
       integer_expression<35>,
-      multiply_expression<integer_expression<7>, integer_expression<5>>>,
+      multiplication_expression<integer_expression<7>, integer_expression<5>>>,
     "failed: multiply(integer(7), integer(5)) -> integer(35)");
 }
 
@@ -80,17 +80,17 @@ TEST(one_zero_functor_tests, test_integer_expression_3)
 
   // integer(0) + integer(0) -> integer(0)
   static_assert(is_zero_expression_v<
-                  add_expression<integer_expression<0>, integer_expression<0>>>,
+                  addition_expression<integer_expression<0>, integer_expression<0>>>,
                 "failed: integer(0) + integer(0) -> zero");
   // integer(1) - integer(1) -> zero
   static_assert(
     is_zero_expression_v<
-      subtract_expression<integer_expression<1>, integer_expression<1>>>,
+      subtraction_expression<integer_expression<1>, integer_expression<1>>>,
     "failed: integer(1) - integer(1) -> zero");
   // integer(1) * integer(1) -> integer(1)
   static_assert(
     is_one_expression_v<
-      multiply_expression<integer_expression<1>, integer_expression<1>>>,
+      multiplication_expression<integer_expression<1>, integer_expression<1>>>,
     "failed: integer(1) * integer(1) -> integer(1)");
   // integer(INT_MAX) -> integer(INT_MAX)
   static_assert(
@@ -102,15 +102,15 @@ TEST(one_zero_functor_tests, test_integer_expression_3)
     "failed: integer(INT_MIN) -> integer(INT_MIN)");
   // integer(INT_MIN) -> integer(INT_MIN)
   static_assert(are_same_v<integer_expression<INT_MIN>,
-                           affirmate_expression<integer_expression<INT_MIN>>>,
+                           affirmation_expression<integer_expression<INT_MIN>>>,
                 "failed: affirmate(integer(INT_MIN)) -> integer(INT_MIN)");
   
   // negate(integer(INT_MIN)) -> ERROR
   static_assert(
-    is_error_expression_v<negate_expression<integer_expression<INT_MIN>>>,
+    is_error_expression_v<negation_expression<integer_expression<INT_MIN>>>,
     "failed: negate(integer(INT_MIN)) -> error");
   // negate(integer(INT_MAX)) -> integer(INT_MIN + 1)
   static_assert(are_same_v<integer_expression<INT_MIN + 1>,
-                           negate_expression<integer_expression<INT_MAX>>>,
+                           negation_expression<integer_expression<INT_MAX>>>,
                 "failed: negate(integer(INT_MAX)) -> integer(INT_MIN + 1)");
 }

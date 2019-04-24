@@ -32,50 +32,50 @@ TEST(one_zero_functor_tests, test_error_expression)
 
   // add(error, error) -> error
   static_assert(
-    is_error_expression_v<add_expression<error_expression, error_expression>>,
+    is_error_expression_v<addition_expression<error_expression, error_expression>>,
     "failed: add(error, error) -> error");
 
   // subtract(error, error) -> error
   static_assert(is_error_expression_v<
-                  subtract_expression<error_expression, error_expression>>,
+                  subtraction_expression<error_expression, error_expression>>,
                 "failed: subtract(error, error) -> error");
 
   // multiply(error, error) -> error
   static_assert(is_error_expression_v<
-                  multiply_expression<error_expression, error_expression>>,
+                  multiplication_expression<error_expression, error_expression>>,
                 "failed: multiply(error, error) -> error");
 
   // affirmate(error) -> error
-  static_assert(is_error_expression_v<affirmate_expression<error_expression>>,
+  static_assert(is_error_expression_v<affirmation_expression<error_expression>>,
                 "failed: affirmate(error) -> error");
   // negate(error) -> error
-  static_assert(is_error_expression_v<negate_expression<error_expression>>,
+  static_assert(is_error_expression_v<negation_expression<error_expression>>,
                 "failed: negate(error) -> error");
 
   // add(error, zero) -> error
   static_assert(
-    is_error_expression_v<add_expression<error_expression, zero_expression>>,
+    is_error_expression_v<addition_expression<error_expression, zero_expression>>,
     "failed: add(error, zero) -> error");
   // add(zero, error) -> error
   static_assert(
-    is_error_expression_v<add_expression<zero_expression, error_expression>>,
+    is_error_expression_v<addition_expression<zero_expression, error_expression>>,
     "failed: add(zero, error) -> error");
 
   // multiply(error, zero) -> error
   static_assert(is_error_expression_v<
-                  multiply_expression<error_expression, zero_expression>>,
+                  multiplication_expression<error_expression, zero_expression>>,
                 "failed: multiply(error, zero) -> error");
   // multiply(zero, error) -> error
   static_assert(is_error_expression_v<
-                  multiply_expression<zero_expression, error_expression>>,
+                  multiplication_expression<zero_expression, error_expression>>,
                 "failed: multiply(zero, error) -> error");
 
   // multiply(error, one) -> error
   static_assert(is_error_expression_v<
-                  multiply_expression<error_expression, one_expression>>,
+                  multiplication_expression<error_expression, one_expression>>,
                 "failed: multiply(error, one) -> error");
   // multiply(one, error) -> error
   static_assert(is_error_expression_v<
-                  multiply_expression<one_expression, error_expression>>,
+                  multiplication_expression<one_expression, error_expression>>,
                 "failed: multiply(one, error) -> error");
 }

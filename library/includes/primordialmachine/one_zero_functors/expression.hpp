@@ -65,163 +65,193 @@ struct unary_expression
 
 namespace primordialmachine {
 
-struct _is_add_expression
+struct _is_addition_expression
 {};
 template<typename EXPRESSION>
-constexpr bool is_add_expression_v =
-  std::is_base_of_v<_is_add_expression, EXPRESSION>;
+constexpr bool is_addition_expression_v =
+  std::is_base_of_v<_is_addition_expression, EXPRESSION>;
 
 template<typename A, typename B>
-struct add_expression_impl_2
+struct addition_expression_impl_2
   : public binary_expression<A, B>
-  , public _is_add_expression
+  , public _is_addition_expression
 {
   using left_operand = A;
   using right_operand = B;
   static std::string to_string()
   {
     std::ostringstream os;
-    os << "(" << left_operand::to_string() << ")"
-       << "+"
-       << "(" << right_operand::to_string() << ")";
+    os << "addition(" << left_operand::to_string() << ", "
+       << right_operand::to_string() << ")";
     return os.str();
   }
 };
 
 template<typename EXPRESSION, typename ENABLED = void>
-struct evaluate_add_expression;
+struct evaluate_addition_expression;
 
 template<typename A, typename B>
-using add_expression =
-  typename evaluate_add_expression<add_expression_impl_2<A, B>>::type;
+using addition_expression =
+  typename evaluate_addition_expression<addition_expression_impl_2<A, B>>::type;
 }
 
 namespace primordialmachine {
 
-struct _is_multiply_expression
+struct _is_multiplication_expression
 {};
 template<typename EXPRESSION>
-constexpr bool is_multiply_expression_v =
-  std::is_base_of_v<_is_multiply_expression, EXPRESSION>;
+constexpr bool is_multiplication_expression_v =
+  std::is_base_of_v<_is_multiplication_expression, EXPRESSION>;
 
 template<typename A, typename B>
-struct multiply_expression_impl_2
+struct multiplication_expression_impl_2
   : public binary_expression<A, B>
-  , public _is_multiply_expression
+  , public _is_multiplication_expression
 {
   using left_operand = A;
   using right_operand = B;
   static std::string to_string()
   {
     std::ostringstream os;
-    os << "(" << left_operand::to_string() << ")"
-       << "*"
-       << "(" << right_operand::to_string() << ")";
+    os << "multiplication(" << left_operand::to_string() << ", "
+       << right_operand::to_string() << ")";
     return os.str();
   }
 };
 
 template<typename EXPRESSION, typename ENABLED = void>
-struct evaluate_multiply_expression;
+struct evaluate_multiplication_expression;
 
 template<typename A, typename B>
-using multiply_expression =
-  typename evaluate_multiply_expression<multiply_expression_impl_2<A, B>>::type;
+using multiplication_expression =
+  typename evaluate_multiplication_expression<multiplication_expression_impl_2<A, B>>::type;
 
 } // namespace primordialmachine
 
 namespace primordialmachine {
 
-struct _is_subtract_expression
+struct _is_subtraction_expression
 {};
 template<typename EXPRESSION>
-constexpr bool is_subtract_expression_v =
-  std::is_base_of<_is_subtract_expression, EXPRESSION>;
+constexpr bool is_subtraction_expression_v =
+  std::is_base_of<_is_subtraction_expression, EXPRESSION>;
 
 template<typename A, typename B>
-struct subtract_expression_impl_2
+struct subtraction_expression_impl_2
   : public binary_expression<A, B>
-  , public _is_subtract_expression
+  , public _is_subtraction_expression
 {
   using left_operand = A;
   using right_operand = B;
   static std::string to_string()
   {
     std::ostringstream os;
-    os << "(" << left_operand::to_string() << ")"
-       << "-"
-       << "(" << right_operand::to_string() << ")";
+    os << "subtraction(" << left_operand::to_string() << ", "
+       << right_operand::to_string() << ")";
     return os.str();
   }
 };
 
 template<typename EXPRESSION, typename ENABLED = void>
-struct evaluate_subtract_expression;
+struct evaluate_subtraction_expression;
 
 template<typename A, typename B>
-using subtract_expression =
-  typename evaluate_subtract_expression<subtract_expression_impl_2<A, B>>::type;
+using subtraction_expression =
+  typename evaluate_subtraction_expression<subtraction_expression_impl_2<A, B>>::type;
 
 } // namespace primordialmachine
 
 namespace primordialmachine {
 
-struct _is_negate_expression
+struct _is_negation_expression
 {};
 template<typename EXPRESSION>
-constexpr bool is_negate_expression_v =
-  std::is_base_of<_is_negate_expression, EXPRESSION>::value;
+constexpr bool is_negation_expression_v =
+  std::is_base_of<_is_negation_expression, EXPRESSION>::value;
 
 template<typename A>
-struct negate_expression_impl_2
+struct negation_expression_impl_2
   : public unary_expression<A>
-  , public _is_negate_expression
+  , public _is_negation_expression
 {
   using operand = A;
   static std::string to_string()
   {
     std::ostringstream os;
-    os << "-(" << operand::to_string() << ")";
+    os << "negation(" << operand::to_string() << ")";
     return os.str();
   }
 };
 
 template<typename EXPRESSION, typename ENABLED = void>
-struct evaluate_negate_expression;
+struct evaluate_negation_expression;
 
 template<typename A>
-using negate_expression =
-  typename evaluate_negate_expression<negate_expression_impl_2<A>>::type;
+using negation_expression =
+  typename evaluate_negation_expression<negation_expression_impl_2<A>>::type;
 
 } // namespace primordialmachine
 
 namespace primordialmachine {
 
-struct _is_affirmate_expression
+struct _is_affirmation_expression
 {};
 template<typename EXPRESSION>
-constexpr bool is_affirmate_expression_v =
-  std::is_base_of<_is_affirmate_expression, EXPRESSION>::value;
+constexpr bool is_affirmation_expression_v =
+  std::is_base_of<_is_affirmation_expression, EXPRESSION>::value;
 
 template<typename A>
-struct affirmate_expression_impl_2
+struct affirmation_expression_impl_2
   : public unary_expression<A>
-  , public _is_affirmate_expression
+  , public _is_affirmation_expression
 {
   using operand = A;
   static std::string to_string()
   {
     std::ostringstream os;
-    os << "+(" << operand::to_string() << ")";
+    os << "affirmation(" << operand::to_string() << ")";
     return os.str();
   }
 };
 
 template<typename EXPRESSION, typename ENABLED = void>
-struct evaluate_affirmate_expression;
+struct evaluate_affirmation_expression;
 
 template<typename A>
-using affirmate_expression =
-  typename evaluate_affirmate_expression<affirmate_expression_impl_2<A>>::type;
+using affirmation_expression =
+  typename evaluate_affirmation_expression<affirmation_expression_impl_2<A>>::type;
+
+} // namespace primordialmachine
+
+namespace primordialmachine {
+
+struct _is_exponentiation_expression
+{};
+template<typename EXPRESSION>
+constexpr bool is_exponentiation_expression_v =
+  std::is_base_of<_is_exponentiation_expression, EXPRESSION>;
+
+template<typename A, typename B>
+struct exponentiation_expression_impl_2
+  : public binary_expression<A, B>
+  , public _is_exponentiation_expression
+{
+  using left_operand = A;
+  using right_operand = B;
+  static std::string to_string()
+  {
+    std::ostringstream os;
+    os << "exponentiation(" << left_operand::to_string() << ", "
+       << right_operand::to_string() << ")";
+    return os.str();
+  }
+};
+
+template<typename EXPRESSION, typename ENABLED = void>
+struct evaluate_exponentiation_expression;
+
+template<typename A, typename B>
+using exponentiation_expression = typename evaluate_exponentiation_expression<
+  exponentiation_expression_impl_2<A, B>>::type;
 
 } // namespace primordialmachine

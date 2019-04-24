@@ -86,7 +86,7 @@ struct evaluate_fraction_expression<
 };
 
 template<typename EXPRESSION>
-struct evaluate_multiply_expression<
+struct evaluate_multiplication_expression<
   EXPRESSION,
   enable_if<is_fraction_expression_v<left_operand<EXPRESSION>> &&
             is_fraction_expression_v<right_operand<EXPRESSION>>>>
@@ -94,8 +94,8 @@ struct evaluate_multiply_expression<
   using left_operand = left_operand<EXPRESSION>;
   using right_operand = right_operand<EXPRESSION>;
   using type = fraction_expression<
-    multiply_expression<nominator<left_operand>, nominator<right_operand>>,
-    multiply_expression<denominator<left_operand>, denominator<right_operand>>>;
+    multiplication_expression<nominator<left_operand>, nominator<right_operand>>,
+    multiplication_expression<denominator<left_operand>, denominator<right_operand>>>;
 };
 
 // This is the case where nominator and denominator are positive and are not

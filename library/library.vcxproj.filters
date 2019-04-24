@@ -77,21 +77,6 @@
     <ClInclude Include="includes\primordialmachine\one_zero_functors\value_of_e_expression.hpp">
       <Filter>Headerdateien\one_zero_functors</Filter>
     </ClInclude>
-    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_add_expression_local.hpp">
-      <Filter>Headerdateien\one_zero_functors</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_affirmate_expression_local.hpp">
-      <Filter>Headerdateien\one_zero_functors</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_multiply_expression_local.hpp">
-      <Filter>Headerdateien\one_zero_functors</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_negate_expression_local.hpp">
-      <Filter>Headerdateien\one_zero_functors</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_subtract_expression_local.hpp">
-      <Filter>Headerdateien\one_zero_functors</Filter>
-    </ClInclude>
     <ClInclude Include="includes\primordialmachine\one_zero_functors\swap_helper.hpp">
       <Filter>Headerdateien\one_zero_functors</Filter>
     </ClInclude>
@@ -111,6 +96,24 @@
       <Filter>Headerdateien\one_zero_functors</Filter>
     </ClInclude>
     <ClInclude Include="includes\primordialmachine\one_zero_functors\is_overflow_helper.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_exponentiation_expression_local.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_addition_expression_local.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_affirmation_expression_local.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_multiplication_expression_local.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_subtraction_expression_local.hpp">
+      <Filter>Headerdateien\one_zero_functors</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\primordialmachine\one_zero_functors\evaluate_negation_expression_local.hpp">
       <Filter>Headerdateien\one_zero_functors</Filter>
     </ClInclude>
   </ItemGroup>

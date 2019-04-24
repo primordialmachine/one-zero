@@ -100,7 +100,6 @@ constexpr bool is_multiplicative_overflow =
 
 } // namespace primordialmachine::helper
 
-// At this point, we provided some constexpr logic to determine positive
-// overflow and negative overflow for addition, subtraction, and multiplication
-// of int32_t values. However, we may not simply use those because inside
-// enable_if no lazy evaluation occurs.
+namespace primordialmachine::helper {
+
+} // namespace primordialmachine::helper

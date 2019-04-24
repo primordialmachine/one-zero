@@ -29,13 +29,5 @@
 
 TEST(one_zero_functors_tests, test_e_expressions)
 {
-  using namespace primordialmachine;
-  /*multiply(zero, v) -> zero*/
-  static_assert(is_zero_expression_v<
-                  multiply_expression<zero_expression, pi_expression>>,
-                "failed: multiply(zero, pi) -> zero"); /*multiply(v, zero) -> zero*/
-  static_assert(is_zero_expression_v<
-                  multiply_expression<pi_expression, zero_expression>>,
-                "failed: multiply(pi, zero) -> zero");\
   VARIABLE_EXPRESSIONS_TESTS(e_expression, is_e_expression_v, "e");
 }

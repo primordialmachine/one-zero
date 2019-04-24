@@ -43,5 +43,8 @@
     <ClCompile Include="sources\integer_expressions_tests.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="sources\exponentiation_expression_tests.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

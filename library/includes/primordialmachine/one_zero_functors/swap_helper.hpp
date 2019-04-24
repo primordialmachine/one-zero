@@ -38,12 +38,26 @@ struct swap_implementation;
 
 template<typename EXPRESSION>
 struct swap_implementation<EXPRESSION,
-                           enable_if<(is_add_expression_v<EXPRESSION> ||
-                                      is_multiply_expression_v<EXPRESSION> ||
-                                      is_fraction_expression_v<EXPRESSION>)>>
+                           enable_if<is_fraction_expression_v<EXPRESSION>>>
 {
   using type =
-    add_expression<right_operand<EXPRESSION>, left_operand<EXPRESSION>>;
+    fraction_expression<denominator<EXPRESSION>, nominator<EXPRESSION>>;
+}; // struct swap_implementation
+
+template<typename EXPRESSION>
+struct swap_implementation<EXPRESSION,
+                           enable_if<is_multiplication_expression_v<EXPRESSION>>>
+{
+  using type =
+    multiplication_expression<right_operand<EXPRESSION>, left_operand<EXPRESSION>>;
+}; // struct swap_implementation
+
+template<typename EXPRESSION>
+struct swap_implementation<EXPRESSION,
+                           enable_if<is_addition_expression_v<EXPRESSION>>>
+{
+  using type =
+    addition_expression<right_operand<EXPRESSION>, left_operand<EXPRESSION>>;
 }; // struct swap_implementation
 
 template<typename EXPRESSION>

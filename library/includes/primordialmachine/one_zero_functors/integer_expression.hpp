@@ -66,10 +66,10 @@ struct evaluate_integer_expression<
   using type = EXPRESSION;
 }; // struct evaluate_integer_expression
 
-// add(integer(x), integer(y)) -> integer(x + y) if not overflow(+, x, y)
-//                             -> error          otherwise
+// addition(integer(x), integer(y)) -> integer(x + y) if not overflow(+, x, y)
+//                                  -> error          otherwise
 template<typename EXPRESSION>
-struct evaluate_add_expression<
+struct evaluate_addition_expression<
   EXPRESSION,
   enable_if<is_integer_expression_v<left_operand<EXPRESSION>> &&
             is_integer_expression_v<right_operand<EXPRESSION>>>>
@@ -87,12 +87,12 @@ struct evaluate_add_expression<
 #if defined(_MSC_VER)
 #pragma warning(pop)
 #endif
-}; // struct evaluate_add_expression
+}; // struct evaluate_addition_expression
 
-// subtract(integer(x), integer(y)) -> integer(x - y) if not overflow(-, x, y)
-//                                  -> error          otherwise
+// subtraction(integer(x), integer(y)) -> integer(x - y) if not overflow(-, x, y)
+//                                     -> error          otherwise
 template<typename EXPRESSION>
-struct evaluate_subtract_expression<
+struct evaluate_subtraction_expression<
   EXPRESSION,
   enable_if<is_integer_expression_v<left_operand<EXPRESSION>> &&
             is_integer_expression_v<right_operand<EXPRESSION>>>>
@@ -110,12 +110,12 @@ struct evaluate_subtract_expression<
 #if defined(_MSC_VER)
 #pragma warning(pop)
 #endif
-}; // struct evaluate_subtract_expression
+}; // struct evaluate_subtraction_expression
 
-// multiply(integer(x), integer(y)) -> integer(x * y) if not overflow(*, x, y)
-//                                  -> error otherwise
+// multiplication(integer(x), integer(y)) -> integer(x * y) if not overflow(*, x, y)
+//                                        -> error otherwise
 template<typename EXPRESSION>
-struct evaluate_multiply_expression<
+struct evaluate_multiplication_expression<
   EXPRESSION,
   enable_if<is_integer_expression_v<left_operand<EXPRESSION>> &&
             is_integer_expression_v<right_operand<EXPRESSION>>>>
@@ -133,6 +133,6 @@ struct evaluate_multiply_expression<
 #if defined(_MSC_VER)
 #pragma warning(pop)
 #endif
-};
+}; // struct evaluate_multiplication_expression
 
 } // namespace primordialmachine

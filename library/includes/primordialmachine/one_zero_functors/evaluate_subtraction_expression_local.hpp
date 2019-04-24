@@ -6,44 +6,46 @@
 
 namespace primordialmachine {
 
-// subtract(one, one) -> zero
+// subtraction(one, one) -> zero
 template<typename EXPRESSION>
-struct evaluate_subtract_expression<
+struct evaluate_subtraction_expression<
   EXPRESSION,
   enable_if<is_one_expression_v<left_operand<EXPRESSION>> &&
             is_one_expression_v<right_operand<EXPRESSION>>>>
 {
   using type = zero_expression;
-}; // struct evaluate_subtract_expression
+}; // struct evaluate_subtraction_expression
 
-// subtract(v, v) -> zero, v in VARIABLES
+// subtraction(a, a) -> zero
+// a in VARIABLE
 template<typename EXPRESSION>
-struct evaluate_subtract_expression<
+struct evaluate_subtraction_expression<
   EXPRESSION,
   enable_if<
     are_same_variable_v<left_operand<EXPRESSION>, right_operand<EXPRESSION>>>>
 {
   using type = zero_expression;
-}; // struct evaluate_subtract_expression
+}; // struct evaluate_subtraction_expression
 
-// subtract(e, zero) -> e, e in EXPRESSION
+// subtraction(a, zero) -> a
+// a in EXPRESSION
 template<typename EXPRESSION>
-struct evaluate_subtract_expression<
+struct evaluate_subtraction_expression<
   EXPRESSION,
   enable_if<is_expression_v<left_operand<EXPRESSION>> &&
             is_zero_expression_v<right_operand<EXPRESSION>>>>
 {
   using type = left_operand<EXPRESSION>;
-}; // struct evaluate_subtract_expression
+}; // struct evaluate_subtraction_expression
 
-// subtract(error, error) -> error
+// subtraction(error, error) -> error
 template<typename EXPRESSION>
-struct evaluate_subtract_expression<
+struct evaluate_subtraction_expression<
   EXPRESSION,
   enable_if<is_error_expression_v<left_operand<EXPRESSION>> &&
             is_error_expression_v<right_operand<EXPRESSION>>>>
 {
   using type = error_expression;
-}; // struct evaluate_subtract_expression
+}; // struct evaluate_subtraction_expression
 
 } // namespace primordialmachine
