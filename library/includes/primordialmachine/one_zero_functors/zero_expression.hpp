@@ -29,18 +29,16 @@
 
 namespace primordialmachine {
 
-struct _is_zero_expression
+struct zero_expression_tag
 {};
+template<typename A>
+constexpr bool is_zero_expression_v = has_tag<A, zero_expression_tag>();
 
 struct zero_expression
   : public expression
-  , public _is_zero_expression
+  , public zero_expression_tag
 {
   static std::string to_string() { return "zero"; }
 }; // struct zero_expression
-
-template<typename T>
-constexpr bool is_zero_expression_v =
-  std::is_base_of<_is_zero_expression, T>::value;
 
 } // namespace primordialmachine

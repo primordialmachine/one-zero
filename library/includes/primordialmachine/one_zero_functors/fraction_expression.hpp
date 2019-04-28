@@ -7,13 +7,12 @@
 
 namespace primordialmachine {
 
-struct _is_fraction_expression
+struct fraction_expression_tag
 {};
 
 // Test if a type is an expression type.
-template<typename T>
-constexpr bool is_fraction_expression_v =
-  std::is_base_of<_is_fraction_expression, T>::value;
+template<typename A>
+constexpr bool is_fraction_expression_v = has_tag<A, fraction_expression_tag>();
 
 template<typename EXPRESSION, typename ENABLED = void>
 struct evaluate_fraction_expression;
@@ -25,9 +24,9 @@ template<typename EXPRESSION>
 using denominator = typename EXPRESSION::denominator;
 
 template<typename NOMINATOR, typename DENOMINATOR>
-struct fraction_expression_impl_2
+struct fraction_expression_implementation
   : public expression
-  , public _is_fraction_expression
+  , public fraction_expression_tag
 {
   using nominator = NOMINATOR;
   using denominator = DENOMINATOR;
@@ -38,20 +37,21 @@ struct fraction_expression_impl_2
        << denominator::to_string() << ")";
     return os.str();
   }
-};
+}; // struct fraction_expression_implementation
 
 template<typename NOMINATOR, typename DENOMINATOR>
 using fraction_expression = typename evaluate_fraction_expression<
-  fraction_expression_impl_2<NOMINATOR, DENOMINATOR>>::type;
+  fraction_expression_implementation<NOMINATOR, DENOMINATOR>>::type;
 
 template<typename EXPRESSION>
 struct evaluate_fraction_expression<
   EXPRESSION,
   enable_if<!are_same_v<nominator<EXPRESSION>, denominator<EXPRESSION>> &&
-            !is_integer_expression_v<nominator<EXPRESSION>> &&
-            !is_integer_expression_v<denominator<EXPRESSION>> &&
-            !is_zero_expression_v<denominator<EXPRESSION>> &&
-            !is_one_expression_v<denominator<EXPRESSION>>>>
+            !has_tag<nominator<EXPRESSION>, integer_expression_tag>() &&
+            !has_any_tag<denominator<EXPRESSION>,
+                         integer_expression_tag,
+                         zero_expression_tag,
+                         one_expression_tag>()>>
 {
   using type =
     fraction_expression<nominator<EXPRESSION>, denominator<EXPRESSION>>;
@@ -93,9 +93,11 @@ struct evaluate_multiplication_expression<
 {
   using left_operand = left_operand<EXPRESSION>;
   using right_operand = right_operand<EXPRESSION>;
-  using type = fraction_expression<
-    multiplication_expression<nominator<left_operand>, nominator<right_operand>>,
-    multiplication_expression<denominator<left_operand>, denominator<right_operand>>>;
+  using type =
+    fraction_expression<multiplication_expression<nominator<left_operand>,
+                                                  nominator<right_operand>>,
+                        multiplication_expression<denominator<left_operand>,
+                                                  denominator<right_operand>>>;
 };
 
 // This is the case where nominator and denominator are positive and are not

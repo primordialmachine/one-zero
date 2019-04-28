@@ -29,19 +29,17 @@
 
 namespace primordialmachine {
 
-struct _is_euler_mascheroni_constant_expression
+struct euler_mascheroni_constant_expression_tag
 {};
+template<typename A>
+constexpr bool is_euler_mascheroni_constant_expression_v =
+  has_tag<A, euler_mascheroni_constant_expression_tag>();
 
 struct euler_mascheroni_constant_expression
-  : public expression
-  , public variable_expression
-  , public _is_euler_mascheroni_constant_expression
+  : public variable_expression
+  , public euler_mascheroni_constant_expression_tag
 {
   static std::string to_string() { return "[euler-mascheroni-constant]"; }
 }; // struct euler_mascheroni_constant_expression
-
-template<typename T>
-constexpr bool is_euler_mascheroni_constant_expression_v =
-  std::is_base_of<_is_euler_mascheroni_constant_expression, T>::value;
 
 } // namespace primordialmachine

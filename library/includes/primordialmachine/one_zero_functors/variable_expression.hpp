@@ -5,13 +5,13 @@
 
 namespace primordialmachine {
 
-struct _is_variable_expression
+struct variable_expression_tag
 {};
-template<typename T>
+template<typename A>
 static constexpr bool is_variable_expression_v =
-  std::is_base_of<_is_variable_expression, T>::value;
+  has_tag<A, variable_expression_tag>();
 
-struct variable_expression : public _is_variable_expression
+struct variable_expression : public expression, public variable_expression_tag
 {}; // struct variable_expression
 
 template<typename A, typename B>

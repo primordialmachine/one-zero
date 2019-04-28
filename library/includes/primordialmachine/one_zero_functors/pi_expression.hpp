@@ -29,19 +29,16 @@
 
 namespace primordialmachine {
 
-struct _is_pi_expression
+struct pi_expression_tag
 {};
+template<typename A>
+constexpr bool is_pi_expression_v = has_tag<A, pi_expression_tag>();
 
 struct pi_expression
-  : public expression
-  , public variable_expression
-  , public _is_pi_expression
+  : public variable_expression
+  , public pi_expression_tag
 {
-  static std::string to_string() { return "pi"; }
-};
-
-template<typename T>
-constexpr bool is_pi_expression_v =
-  std::is_base_of<_is_pi_expression, T>::value;
+  static std::string to_string() { return "[pi]"; }
+}; // struct pi_expression
 
 } // namespace primordialmachine

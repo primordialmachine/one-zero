@@ -114,4 +114,22 @@ struct evaluate_fraction_expression<
   using type = EXPRESSION;
 }; // struct evaluate_fraction_expression
 
+// multiplication(exponentation(a, b), exponentiation(a,c)
+// -> exponentiation(a, addition(b, c)
+// a, b in EXPRESSION - ERROR - ONE - ZERO
+template<typename EXPRESSION>
+struct evaluate_multiplication_expression<
+  EXPRESSION,
+  enable_if<is_exponentiation_expression_v<left_operand<EXPRESSION>> &&
+            is_exponentiation_expression_v<right_operand<EXPRESSION>> &&
+            are_same_v<base<left_operand<EXPRESSION>>,
+                       base<right_operand<EXPRESSION>>>>>
+{
+  using exponent_1 = exponent<left_operand<EXPRESSION>>;
+  using exponent_2 = exponent<right_operand<EXPRESSION>>;
+  using base = base<left_operand<EXPRESSION>>;
+  using exponent = addition_expression<exponent_1, exponent_2>;
+  using type = exponentiation_expression<base, exponent>;
+}; // struct evaluate_exponentiation_expression
+
 } // namespace primordialmachine

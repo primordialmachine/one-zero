@@ -53,8 +53,9 @@ struct evaluate_multiplication_expression<
 template<typename EXPRESSION>
 struct evaluate_multiplication_expression<
   EXPRESSION,
-  enable_if<(!is_zero_expression_v<left_operand<EXPRESSION>> &&
-             !is_error_expression_v<left_operand<EXPRESSION>> &&
+  enable_if<(!has_any_tag<left_operand<EXPRESSION>,
+                          zero_expression_tag,
+                          error_expression_tag>() &&
              is_expression_v<left_operand<
                EXPRESSION>>)&&is_zero_expression_v<right_operand<EXPRESSION>>>>
 {
@@ -66,8 +67,9 @@ struct evaluate_multiplication_expression<
 template<typename EXPRESSION>
 struct evaluate_multiplication_expression<
   EXPRESSION,
-  enable_if<(!is_zero_expression_v<right_operand<EXPRESSION>> &&
-             !is_error_expression_v<right_operand<EXPRESSION>> &&
+  enable_if<(!has_any_tag<right_operand<EXPRESSION>,
+                          zero_expression_tag,
+                          error_expression_tag>() &&
              is_expression_v<right_operand<
                EXPRESSION>>)&&is_zero_expression_v<left_operand<EXPRESSION>>>>
 {

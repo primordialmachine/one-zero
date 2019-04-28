@@ -29,19 +29,18 @@
 
 namespace primordialmachine {
 
-struct _is_one_expression
+struct one_expression_tag
 {};
-template<typename T>
-constexpr bool is_one_expression_v =
-  std::is_base_of<_is_one_expression, T>::value;
+template<typename A>
+constexpr bool is_one_expression_v = has_tag<A, one_expression_tag>();
 
-struct one_expression_impl
+struct one_expression_implementation
   : public expression
-  , public _is_one_expression
+  , public one_expression_tag
 {
   static std::string to_string() { return "one"; }
 }; // struct one_expression_impl
 
-using one_expression = one_expression_impl;
+using one_expression = one_expression_implementation;
 
 } // namespace primordialmachine

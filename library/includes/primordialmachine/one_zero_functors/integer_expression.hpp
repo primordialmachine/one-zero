@@ -8,18 +8,18 @@
 
 namespace primordialmachine {
 
-struct _is_integer_expression
+struct integer_expression_tag
 {};
 // Test if a type is an integer expression type.
-template<typename T>
+template<typename A>
 constexpr bool is_integer_expression_v =
-  std::is_base_of<_is_integer_expression, T>::value;
+  has_tag<A, integer_expression_tag>();
 
 // represents values from -MIN to +MAX
 template<int VALUE>
-struct integer_expression_impl
+struct integer_expression_implementation
   : public expression
-  , public _is_integer_expression
+  , public integer_expression_tag
 {
   static constexpr const int32_t value = VALUE;
   static std::string to_string()
@@ -28,14 +28,14 @@ struct integer_expression_impl
     os << "integer(" << value << ")";
     return os.str();
   }
-}; // struct integer_expression_impl
+}; // struct integer_expression_implementation
 
 template<typename EXPRESSION, typename ENABLED = void>
 struct evaluate_integer_expression;
 
 template<int32_t VALUE>
 using integer_expression =
-  typename evaluate_integer_expression<integer_expression_impl<VALUE>>::type;
+  typename evaluate_integer_expression<integer_expression_implementation<VALUE>>::type;
 
 } // namespace primordialmachine
 

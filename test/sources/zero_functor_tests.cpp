@@ -37,8 +37,8 @@ struct have_common_factors
 };
 
 template<int x, int y>
-struct have_common_factors<integer_expression_impl<x>,
-                           integer_expression_impl<y>,
+struct have_common_factors<integer_expression_implementation<x>,
+                           integer_expression_implementation<y>,
                            enable_if<(x > 0) && (y > 0)>>
 {
   static constexpr bool value = (1 < gcd<x, y>());
@@ -67,7 +67,7 @@ struct evaluate_fraction_expression<
     left_operand<nominator_old>,
     integer_expression<right_operand<nominator_old>::value / gcd>>;
   using denominator_new = integer_expression<denominator_old::value / gcd>;
-  using type = fraction_expression_impl_2<nominator_new, denominator_new>;
+  using type = fraction_expression_implementation<nominator_new, denominator_new>;
 };
 
 // fraction(i, multiply(e, j)) -> fraction(i / c,  multiply(e, j / c)),
@@ -90,7 +90,7 @@ struct evaluate_fraction_expression<
   using denominator_new = multiplication_expression<
     left_operand<denominator_old>,
     integer_expression<right_operand<denominator_old>::value / gcd>>;
-  using type = fraction_expression_impl_2<nominator_new, denominator_new>;
+  using type = fraction_expression_implementation<nominator_new, denominator_new>;
 };
 
 } // namespace primordialmachine
@@ -154,11 +154,11 @@ TEST(one_zero_functor_tests, test_canonicalize_1)
   using a = addition_expression<pi_expression, integer_expression<7>>;
   static_assert(
     are_same_v<addition_expression<pi_expression, integer_expression<7>>, a>,
-    "failed: add(pi, integer(7)) -> add(pi, integer(7))");
+    "failed: addition(pi, integer(7)) -> addition(pi, integer(7))");
   using b = addition_expression<pi_expression, integer_expression<5>>;
   static_assert(
     are_same_v<addition_expression<pi_expression, integer_expression<5>>, b>,
-    "failed: add(pi, integer(5)) -> add(pi, integer(5))");
+    "failed: addition(pi, integer(5)) -> addition(pi, integer(5))");
   using c = addition_expression<a, b>;
   static_assert(
     is_addition_expression_v<c>,
@@ -179,47 +179,55 @@ TEST(one_zero_functor_tests, test_canonicalize_2)
   using a = addition_expression<pi_expression, integer_expression<7>>;
   static_assert(
     are_same_v<addition_expression<pi_expression, integer_expression<7>>, a>,
-    "failed: add(pi, integer(7)) -> add(pi, integer(7))");
+    "failed: addition(pi, integer(7)) -> addition(pi, integer(7))");
   using b = addition_expression<pi_expression, integer_expression<5>>;
   static_assert(
     are_same_v<addition_expression<pi_expression, integer_expression<5>>, b>,
-    "failed: add(pi, integer(5)) -> add(pi, integer(5))");
+    "failed: addition(pi, integer(5)) -> addition(pi, integer(5))");
   using c = subtraction_expression<a, b>;
   static_assert(are_same_v<c, integer_expression<2>>, "error");
+}
+
+TEST(one_zero_functor_tests, test_terminal_expressions)
+{
+  using namespace primordialmachine;
+  static_assert(are_same_v<addition_expression<pi_expression, e_expression>,
+                           addition_expression<pi_expression, e_expression>>,
+                "failed: addition([pi], [e]) -> addition([pi], [e]");
 }
 
 TEST(one_zero_functor_tests, test_zero_expressions)
 {
   using namespace primordialmachine;
-  // zero + zero -> zero
+  // addition(zero, zero) -> zero
   static_assert(
     is_zero_expression_v<addition_expression<zero_expression, zero_expression>>,
-    "failed: zero + zero -> zero");
-  // zero - zero -> zero
+    "failed: addition(zero, zero) -> zero");
+  // subtraction(zero, zero) -> zero
   static_assert(
     is_zero_expression_v<subtraction_expression<zero_expression, zero_expression>>,
-    "failed: zero - zero -> zero");
-  // zero * zero -> zero
+    "failed: subtraction(zero, zero) -> zero");
+  // multiplication(zero, zero) -> zero
   static_assert(
     is_zero_expression_v<multiplication_expression<zero_expression, zero_expression>>,
-    "failed: zero * zero -> zero");
+    "failed: multiplication(zero, zero) -> zero");
 }
 
 TEST(one_zero_functor_tests, test_one_expressions)
 {
   using namespace primordialmachine;
-  // one * one -> one
+  // multiplication(one, one) -> one
   static_assert(
     is_one_expression_v<multiplication_expression<one_expression, one_expression>>,
-    "failed: one * one -> one");
-  // one - zero -> one
+    "failed: multiplication(one, one) -> one");
+  // subtraction(one, zero) -> one
   static_assert(
     is_one_expression_v<subtraction_expression<one_expression, zero_expression>>,
-    "failed: one - zero -> one");
-  // one - one -> zero
+    "failed: subtraction(one, zero) -> one");
+  // subtraction(one, one) -> zero
   static_assert(
     is_zero_expression_v<subtraction_expression<one_expression, one_expression>>,
-    "failed: one - one -> zero");
+    "failed: subtraction(one, one) -> zero");
 }
 
 // Performs the following tests:

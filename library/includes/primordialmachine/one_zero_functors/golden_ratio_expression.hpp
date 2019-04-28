@@ -29,19 +29,17 @@
 
 namespace primordialmachine {
 
-struct _is_golden_ratio_expression
+struct golden_ratio_expression_tag
 {};
+template<typename A>
+constexpr bool is_golden_ratio_expression_v =
+  has_tag<A, golden_ratio_expression_tag>();
 
 struct golden_ratio_expression
-  : public expression
-  , public variable_expression
-  , public _is_golden_ratio_expression
+  : public variable_expression
+  , public golden_ratio_expression_tag
 {
-  static std::string to_string() { return "golden_ratio"; }
+  static std::string to_string() { return "[golden ratio]"; }
 }; // struct golden_ratio_expression
-
-template<typename T>
-constexpr bool is_golden_ratio_expression_v =
-  std::is_base_of<_is_golden_ratio_expression, T>::value;
 
 } // namespace primordialmachine

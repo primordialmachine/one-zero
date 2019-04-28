@@ -70,9 +70,21 @@ struct evaluate_addition_expression<
   enable_if<
     are_same_variable_v<left_operand<EXPRESSION>, right_operand<EXPRESSION>>>>
 {
-  // TODO: Should not use multiplication_expression_impl_2 but multiplication_expression.
   using type =
-    multiplication_expression_impl_2<left_operand<EXPRESSION>, integer_expression<2>>;
+    multiplication_expression<left_operand<EXPRESSION>, integer_expression<2>>;
+}; // struct evaluate_addition_expression
+
+// addition(a, b) -> addition(a, b)
+// a != b, a, b in VARIABLE
+template<typename EXPRESSION>
+struct evaluate_addition_expression<
+  EXPRESSION,
+  enable_if<
+    is_variable_expression_v<left_operand<EXPRESSION>> &&
+    is_variable_expression_v<right_operand<EXPRESSION>> &&
+    !are_same_variable_v<left_operand<EXPRESSION>, right_operand<EXPRESSION>>>>
+{
+  using type = EXPRESSION;
 }; // struct evaluate_addition_expression
 
 } // namespace primordialmachine

@@ -38,3 +38,26 @@ struct evaluate_exponentiation_expression<
 }; // struct evaluate_exponentiation_expression
 
 } // namespace primordialmachine
+
+namespace primordialmachine {
+
+// exponentation(a, b) -> exponentiation(a, b) a, b in EXPRESSION - ERROR - ZERO
+// - ONE
+template<typename EXPRESSION>
+struct evaluate_exponentiation_expression<
+  EXPRESSION,
+  enable_if<(is_expression_v<left_operand<EXPRESSION>> &&
+             !has_any_tag<left_operand<EXPRESSION>,
+                          error_expression_tag,
+                          one_expression_tag,
+                          zero_expression_tag>()) &&
+            (is_expression_v<right_operand<EXPRESSION>> &&
+             !has_any_tag<right_operand<EXPRESSION>,
+                          error_expression_tag,
+                          one_expression_tag,
+                          zero_expression_tag>())>>
+{
+  using type = EXPRESSION;
+}; // struct evaluate_exponentiation_expression
+
+} // namespace primordialmachine
