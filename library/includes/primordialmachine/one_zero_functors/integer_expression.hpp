@@ -8,18 +8,19 @@
 
 namespace primordialmachine {
 
-struct integer_expression_tag
+namespace tag {
+struct integer_expression
 {};
+} // namespace tag
 // Test if a type is an integer expression type.
 template<typename A>
-constexpr bool is_integer_expression_v =
-  has_tag<A, integer_expression_tag>();
+constexpr bool is_integer_expression_v = has_tag<A, tag::integer_expression>();
 
 // represents values from -MIN to +MAX
 template<int VALUE>
 struct integer_expression_implementation
   : public expression
-  , public integer_expression_tag
+  , public tag::integer_expression
 {
   static constexpr const int32_t value = VALUE;
   static std::string to_string()
@@ -34,8 +35,8 @@ template<typename EXPRESSION, typename ENABLED = void>
 struct evaluate_integer_expression;
 
 template<int32_t VALUE>
-using integer_expression =
-  typename evaluate_integer_expression<integer_expression_implementation<VALUE>>::type;
+using integer_expression = typename evaluate_integer_expression<
+  integer_expression_implementation<VALUE>>::type;
 
 } // namespace primordialmachine
 
@@ -89,7 +90,8 @@ struct evaluate_addition_expression<
 #endif
 }; // struct evaluate_addition_expression
 
-// subtraction(integer(x), integer(y)) -> integer(x - y) if not overflow(-, x, y)
+// subtraction(integer(x), integer(y)) -> integer(x - y) if not overflow(-, x,
+// y)
 //                                     -> error          otherwise
 template<typename EXPRESSION>
 struct evaluate_subtraction_expression<
@@ -112,7 +114,8 @@ struct evaluate_subtraction_expression<
 #endif
 }; // struct evaluate_subtraction_expression
 
-// multiplication(integer(x), integer(y)) -> integer(x * y) if not overflow(*, x, y)
+// multiplication(integer(x), integer(y)) -> integer(x * y) if not overflow(*,
+// x, y)
 //                                        -> error otherwise
 template<typename EXPRESSION>
 struct evaluate_multiplication_expression<

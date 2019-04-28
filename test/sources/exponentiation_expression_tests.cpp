@@ -93,6 +93,7 @@ TEST(one_zero_functors_tests, test_exponentiation_expressions_with_one_exponent)
                 "failed: exponentiation(one, one) -> one");
 }
 
+// Test multipliying exponentiation expressions.
 TEST(one_zero_functors_tests, test_exponentiation_expressions_multiply)
 {
   using namespace primordialmachine;
@@ -112,6 +113,27 @@ TEST(one_zero_functors_tests, test_exponentiation_expressions_multiply)
                  pi_expression,
                  addition_expression<e_expression, golden_ratio_expression>>,
                multiplication_expression<U, V>>,
-    "failed: " "multiplication(""exponentiation([pi], [e]),"
-    "exponentiation([pi], [golden ratio])" ")");
+    "failed: "
+    "multiplication("
+    "exponentiation([pi], [e]),"
+    "exponentiation([pi], [golden ratio])"
+    ")");
+}
+
+// Test exponentiating exponentiation expressions.
+TEST(one_zero_functors_tests, test_exponentiation_expressions_exponentiation)
+{
+  using namespace primordialmachine;
+  using U = exponentiation_expression<pi_expression, e_expression>;
+  static_assert(
+    are_same_v<exponentiation_expression<pi_expression, e_expression>, U>,
+    "failed: exponentiation([pi], [e]) -> exponentiation([pi], [e])");
+  using V = exponentiation_expression<U, golden_ratio_expression>;
+  static_assert(
+    are_same_v<
+      exponentiation_expression<pi_expression, multiplication_expression<
+      e_expression, golden_ratio_expression>>,
+      V>,
+    "failed: exponentiation(exponentiation([pi], [e]), [golden ratio])"
+    " -> " "exponentiation([pi], multiplication([e], [golden ratio]))");
 }

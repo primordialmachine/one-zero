@@ -29,14 +29,17 @@
 
 namespace primordialmachine {
 
-struct one_expression_tag
+namespace tag {
+struct one_expression
 {};
+} // namespace tag
+
 template<typename A>
-constexpr bool is_one_expression_v = has_tag<A, one_expression_tag>();
+constexpr bool is_one_expression_v = has_tag<A, tag::one_expression>();
 
 struct one_expression_implementation
   : public expression
-  , public one_expression_tag
+  , public tag::one_expression
 {
   static std::string to_string() { return "one"; }
 }; // struct one_expression_impl

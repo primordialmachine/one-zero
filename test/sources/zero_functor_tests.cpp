@@ -191,9 +191,15 @@ TEST(one_zero_functor_tests, test_canonicalize_2)
 TEST(one_zero_functor_tests, test_terminal_expressions)
 {
   using namespace primordialmachine;
+  /*addition([pi], [e]) -> addition([pi], [e])*/
   static_assert(are_same_v<addition_expression<pi_expression, e_expression>,
                            addition_expression<pi_expression, e_expression>>,
                 "failed: addition([pi], [e]) -> addition([pi], [e]");
+  /*multiplication([pi], [e]) -> multiplication([pi], [e])*/
+  static_assert(
+    are_same_v<multiplication_expression<pi_expression, e_expression>,
+               multiplication_expression<pi_expression, e_expression>>,
+    "failed: multiplication([pi], [e]) -> multiplication([pi], [e])");
 }
 
 TEST(one_zero_functor_tests, test_zero_expressions)

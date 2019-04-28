@@ -47,11 +47,11 @@ template<typename EXPRESSION>
 struct evaluate_fraction_expression<
   EXPRESSION,
   enable_if<!are_same_v<nominator<EXPRESSION>, denominator<EXPRESSION>> &&
-            !has_tag<nominator<EXPRESSION>, integer_expression_tag>() &&
+            !has_tag<nominator<EXPRESSION>, tag::integer_expression>() &&
             !has_any_tag<denominator<EXPRESSION>,
-                         integer_expression_tag,
-                         zero_expression_tag,
-                         one_expression_tag>()>>
+                         tag::integer_expression,
+                         tag::zero_expression,
+                         tag::one_expression>()>>
 {
   using type =
     fraction_expression<nominator<EXPRESSION>, denominator<EXPRESSION>>;

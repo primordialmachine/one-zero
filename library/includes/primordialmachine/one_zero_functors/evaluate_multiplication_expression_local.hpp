@@ -54,8 +54,8 @@ template<typename EXPRESSION>
 struct evaluate_multiplication_expression<
   EXPRESSION,
   enable_if<(!has_any_tag<left_operand<EXPRESSION>,
-                          zero_expression_tag,
-                          error_expression_tag>() &&
+                          tag::zero_expression,
+                          tag::error_expression>() &&
              is_expression_v<left_operand<
                EXPRESSION>>)&&is_zero_expression_v<right_operand<EXPRESSION>>>>
 {
@@ -68,8 +68,8 @@ template<typename EXPRESSION>
 struct evaluate_multiplication_expression<
   EXPRESSION,
   enable_if<(!has_any_tag<right_operand<EXPRESSION>,
-                          zero_expression_tag,
-                          error_expression_tag>() &&
+                          tag::zero_expression,
+                          tag::error_expression>() &&
              is_expression_v<right_operand<
                EXPRESSION>>)&&is_zero_expression_v<left_operand<EXPRESSION>>>>
 {
@@ -104,6 +104,19 @@ struct evaluate_multiplication_expression<
             is_error_expression_v<right_operand<EXPRESSION>>>>
 {
   using type = error_expression;
+}; // struct evaluate_multiplication_expression
+
+// multiplication(a, b) -> multiplication(a, b)
+// a != b, a, b in VARIABLE
+template<typename EXPRESSION>
+struct evaluate_multiplication_expression<
+  EXPRESSION,
+  enable_if<
+    is_variable_expression_v<left_operand<EXPRESSION>> &&
+    is_variable_expression_v<right_operand<EXPRESSION>> &&
+    !are_same_variable_v<left_operand<EXPRESSION>, right_operand<EXPRESSION>>>>
+{
+  using type = EXPRESSION;
 }; // struct evaluate_multiplication_expression
 
 } // namespace primordialmachine

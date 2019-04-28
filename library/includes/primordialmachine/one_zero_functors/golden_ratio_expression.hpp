@@ -29,15 +29,18 @@
 
 namespace primordialmachine {
 
-struct golden_ratio_expression_tag
+namespace tag {
+struct golden_ratio_expression
 {};
+} // namespace tag
+
 template<typename A>
 constexpr bool is_golden_ratio_expression_v =
-  has_tag<A, golden_ratio_expression_tag>();
+  has_tag<A, tag::golden_ratio_expression>();
 
 struct golden_ratio_expression
   : public variable_expression
-  , public golden_ratio_expression_tag
+  , public tag::golden_ratio_expression
 {
   static std::string to_string() { return "[golden ratio]"; }
 }; // struct golden_ratio_expression

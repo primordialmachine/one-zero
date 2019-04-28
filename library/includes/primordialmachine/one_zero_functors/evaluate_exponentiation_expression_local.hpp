@@ -41,23 +41,44 @@ struct evaluate_exponentiation_expression<
 
 namespace primordialmachine {
 
-// exponentation(a, b) -> exponentiation(a, b) a, b in EXPRESSION - ERROR - ZERO
-// - ONE
+// exponentation(a, b) -> exponentiation(a, b)
+// a in EXPRESSION - ERROR - ZERO - ONE - EXPONENTIATION
+// b in EXPRESSION - ERROR - ZERO - ONE
 template<typename EXPRESSION>
 struct evaluate_exponentiation_expression<
   EXPRESSION,
-  enable_if<(is_expression_v<left_operand<EXPRESSION>> &&
-             !has_any_tag<left_operand<EXPRESSION>,
-                          error_expression_tag,
-                          one_expression_tag,
-                          zero_expression_tag>()) &&
-            (is_expression_v<right_operand<EXPRESSION>> &&
-             !has_any_tag<right_operand<EXPRESSION>,
-                          error_expression_tag,
-                          one_expression_tag,
-                          zero_expression_tag>())>>
+  enable_if<(is_expression_v<base<EXPRESSION>> &&
+             !has_any_tag<base<EXPRESSION>,
+                          tag::exponentiation_expression,
+                          tag::error_expression,
+                          tag::one_expression,
+                          tag::zero_expression>()) &&
+            (is_expression_v<exponent<EXPRESSION>> &&
+             !has_any_tag<exponent<EXPRESSION>,
+                          tag::error_expression,
+                          tag::one_expression,
+                          tag::zero_expression>())>>
 {
   using type = EXPRESSION;
+}; // struct evaluate_exponentiation_expression
+
+// exponentiation(exponentation(a, b), c)
+// -> exponentiation(a, multiplication(b, c)
+// c in EXPRESSION - ERROR - ONE - ZERO
+template<typename EXPRESSION>
+struct evaluate_exponentiation_expression<
+  EXPRESSION,
+  enable_if<is_exponentiation_expression_v<base<EXPRESSION>> &&
+            !has_any_tag<exponent<EXPRESSION>,
+                         tag::error_expression,
+                         tag::zero_expression,
+                         tag::one_expression>()>>
+{
+  using exponent_1 = exponent<base<EXPRESSION>>;
+  using exponent_2 = exponent<EXPRESSION>;
+  using base = base<base<EXPRESSION>>;
+  using exponent = multiplication_expression<exponent_1, exponent_2>;
+  using type = exponentiation_expression<base, exponent>;
 }; // struct evaluate_exponentiation_expression
 
 } // namespace primordialmachine

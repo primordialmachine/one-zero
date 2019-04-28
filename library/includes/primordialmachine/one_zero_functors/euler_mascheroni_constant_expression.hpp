@@ -29,15 +29,17 @@
 
 namespace primordialmachine {
 
-struct euler_mascheroni_constant_expression_tag
+namespace tag {
+struct euler_mascheroni_constant_expression
 {};
+} // namespace tag
 template<typename A>
 constexpr bool is_euler_mascheroni_constant_expression_v =
-  has_tag<A, euler_mascheroni_constant_expression_tag>();
+  has_tag<A, tag::euler_mascheroni_constant_expression>();
 
 struct euler_mascheroni_constant_expression
   : public variable_expression
-  , public euler_mascheroni_constant_expression_tag
+  , public tag::euler_mascheroni_constant_expression
 {
   static std::string to_string() { return "[euler-mascheroni-constant]"; }
 }; // struct euler_mascheroni_constant_expression

@@ -19,7 +19,7 @@ struct evaluate_addition_expression<
             is_variable_expression_v<left_operand<EXPRESSION>>>>
 {
   using type = subtraction_expression<left_operand<EXPRESSION>,
-                                   operand<right_operand<EXPRESSION>>>;
+                                      operand<right_operand<EXPRESSION>>>;
 };
 
 // addition(negation(a), b) -> addition(a, negation(b))
@@ -60,7 +60,8 @@ struct evaluate_addition_expression<
   using c0 = right_operand<left_operand<EXPRESSION>>;
   using c1 = right_operand<right_operand<EXPRESSION>>;
 
-  using type = addition_expression<addition_expression<v0, v1>, addition_expression<c0, c1>>;
+  using type = addition_expression<addition_expression<v0, v1>,
+                                   addition_expression<c0, c1>>;
 }; // struct evaluate_addition_expression
 
 // subtraction(addition(e0, c0), addition(e1, c1))
@@ -79,8 +80,8 @@ struct evaluate_subtraction_expression<
   using c0 = right_operand<left_operand<EXPRESSION>>;
   using c1 = right_operand<right_operand<EXPRESSION>>;
 
-  using type =
-    addition_expression<subtraction_expression<e0, e1>, subtraction_expression<c0, c1>>;
+  using type = addition_expression<subtraction_expression<e0, e1>,
+                                   subtraction_expression<c0, c1>>;
 };
 
 // fraction(multiplication(e0, c0), multiplication(e1, c1))
@@ -100,7 +101,7 @@ struct evaluate_fraction_expression<
   using c1 = right_operand<right_operand<EXPRESSION>>;
 
   using type = multiplication_expression<fraction_expression<e0, e1>,
-                                   fraction_expression<c0, c1>>;
+                                         fraction_expression<c0, c1>>;
 }; // struct evaluate_fraction_expression
 
 template<typename EXPRESSION>

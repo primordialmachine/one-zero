@@ -1,17 +1,22 @@
 #pragma once
 
-#include "primordialmachine/one_zero_functors/swap_helper.hpp"
 #include "primordialmachine/one_zero_functors/constant_expression.hpp"
+#include "primordialmachine/one_zero_functors/swap_helper.hpp"
 
 namespace primordialmachine {
 
-struct variable_expression_tag
+namespace tag {
+struct variable_expression
 {};
+} // namespace tag
+
 template<typename A>
 static constexpr bool is_variable_expression_v =
-  has_tag<A, variable_expression_tag>();
+  has_tag<A, tag::variable_expression>();
 
-struct variable_expression : public expression, public variable_expression_tag
+struct variable_expression
+  : public expression
+  , public tag::variable_expression
 {}; // struct variable_expression
 
 template<typename A, typename B>
